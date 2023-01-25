@@ -1,8 +1,13 @@
 .landing-container {
     height: 100vh;
-    background-color: #A8BDFE;
     display: flex;
     align-items: center;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    user-select: none;
 }
 
 .left {
@@ -21,20 +26,21 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    flex: 2;
+    flex: 3;
     height: 100%;
     background: #202021;
 }
 
 .card {
+    border: 5px solid transparent;
     color: white;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     width: fit-content;
     padding: 5vh;
-    height: 60vh;
+    height: 70vh;
     border-radius: 30px;
     background: #212121;
     box-shadow: 15px 15px 10px rgb(25, 25, 25),
@@ -44,7 +50,7 @@
 form div {
     height: 8vh;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -73,11 +79,11 @@ input:focus {
 
 button {
     font-size: 2vh;
+    height: 5vh;
+    width: fit-content;
     cursor: pointer;
     border: 0;
     border-radius: 20px;
-    box-shadow: 15px 15px 30px rgb(25, 25, 25),
-        -15px -15px 30px rgb(60, 60, 60);
     transition: 0.5s;
 }
 
@@ -157,5 +163,28 @@ small {
 
     .card {
         width: 60%;
+    }
+}
+
+.loading {
+    position: relative;
+    animation: animateBorder 2s infinite;
+    transition: 0.5s ease-in;
+}
+
+@keyframes animateBorder {
+
+    0% {
+        border: 5px solid #A8BDFE;
+      
+    }
+
+    50% {
+        border: 5px solid #a8bdfe00;
+    
+    }
+    100% {
+        border: 5px solid #a8bdfe;
+ 
     }
 }

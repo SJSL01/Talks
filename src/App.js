@@ -1,5 +1,3 @@
-
-import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./Components/Landing";
 import Layout from "./Components/Layout";
@@ -8,9 +6,6 @@ import { ToastContextProvider } from "./Context/ToastContext";
 
 
 function App() {
-
-
-
 
   return (
     <BrowserRouter>
