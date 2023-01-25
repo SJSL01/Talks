@@ -1,0 +1,161 @@
+.landing-container {
+    height: 100vh;
+    background-color: #A8BDFE;
+    display: flex;
+    align-items: center;
+}
+
+.left {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    height: 100%;
+    background-color: rgb(72, 72, 72);
+}
+
+.right {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    flex: 2;
+    height: 100%;
+    background: #202021;
+}
+
+.card {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: fit-content;
+    padding: 5vh;
+    height: 60vh;
+    border-radius: 30px;
+    background: #212121;
+    box-shadow: 15px 15px 10px rgb(25, 25, 25),
+        -15px -15px 10px rgb(60, 60, 60);
+}
+
+form div {
+    height: 8vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+input {
+    overflow: hidden;
+    color: white;
+    font-weight: bold;
+    font-size: 2vh;
+    background-color: transparent;
+    height: 5vh;
+    width: 15vw;
+    padding: 0 2vh;
+    border-radius: 20px;
+    margin: 2vh;
+    transition: 0.5s;
+    text-align: center;
+}
+
+input:focus {
+    height: 7vh;
+    color: black;
+    background-color: white;
+    transition: 0.5s;
+}
+
+button {
+    font-size: 2vh;
+    cursor: pointer;
+    border: 0;
+    border-radius: 20px;
+    box-shadow: 15px 15px 30px rgb(25, 25, 25),
+        -15px -15px 30px rgb(60, 60, 60);
+    transition: 0.5s;
+}
+
+button:hover {
+    background-color: rgb(213, 213, 213);
+    transition: 0.5s;
+    scale: 1.1;
+}
+
+.google-btn {
+    font-size: 2vh;
+}
+
+svg {
+    vertical-align: middle;
+}
+
+span {
+    font-size: 3vh;
+}
+
+.show {
+    animation: inAnimation 0.5s linear;
+    display: block;
+}
+
+.hide {
+    animation: outAnimation 0.5s linear;
+    display: none;
+}
+
+@keyframes inAnimation {
+    0% {
+        opacity: 0;
+        display: none;
+    }
+
+    100% {
+        opacity: 1;
+        display: block;
+    }
+}
+
+@keyframes outAnimation {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+.avatar {
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.error {
+    border: 1px solid red
+}
+
+.correct {
+    border: 1px solid rgb(17, 255, 0)
+}
+
+small {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@media only screen and (width<900px) {
+    .left {
+        display: none;
+    }
+
+    .card {
+        width: 60%;
+    }
+}
