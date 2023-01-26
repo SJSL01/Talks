@@ -5,7 +5,26 @@ export default function AllUsers() {
 
     return (
         <div>
-            AllUsers
+            <p>user</p>
+            <p>user</p>
+            <p>user</p>
+            <p>user</p>
+            <p>user</p>
+            <p>user</p>
+            <p>user</p>
+            <p>user</p>
+            <p>user</p>
+            <p>user</p>
+            <p>user</p>
+            <p>user</p>
+            <p>user</p>
+            <p>user</p>
+            <p>user</p>
+            <p>user</p>
+            <p>user</p>
+            <p>user</p>
+            <p>user</p>
+            <p>user</p>
         </div>
     )
 }

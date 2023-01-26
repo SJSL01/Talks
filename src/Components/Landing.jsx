@@ -70,12 +70,12 @@ export default function Landing() {
                     try {
                         //Update profile
                         await updateProfile(res.user, {
-                            displayName: userInfo.username,
                             photoURL: downloadURL,
                         });
                         //create user on firestore
                         await setDoc(doc(db, "users", res.user.uid), {
                             uid: res.user.uid,
+                            username: userInfo.username,
                             email: res.user.email,
                             photoURL: downloadURL,
                         });
@@ -87,6 +87,7 @@ export default function Landing() {
                         toast.success("You are onboard!!!! Confirm Mail Now 👍🏻")
                         setLoading(false)
                         setSignup(false)
+                        setShowPsd(false)
                         navigate("/")
 
                     }
@@ -153,12 +154,12 @@ export default function Landing() {
 
                         <form style={{ position: "relative" }} className={signUp ? "hide" : "show"}>
                             <div>
-                                <input type="email" onChange={(e) => { handleinput(e) }}
+                                <input value={userInfo.email} type="email" onChange={(e) => { handleinput(e) }}
                                     name="email" placeholder="email" />
                             </div>
 
                             <div>
-                                <input type={showPsd ? "text" : "password"} onChange={(e) => { handleinput(e) }}
+                                <input value={userInfo.password} type={showPsd ? "text" : "password"} onChange={(e) => { handleinput(e) }}
                                     name="password" placeholder="password" />
                                 <span onClick={() => { setShowPsd(!showPsd) }} style={{ position: "absolute", right: "-3vh", cursor: "pointer" }}>{showPsd ? "👀" : "🙄"}</span>
                             </div>
@@ -169,7 +170,17 @@ export default function Landing() {
                             </div>
 
                             <div>
-                                <small style={{ margin: "2vh 0" }}>Already Have An Account? <u onClick={() => { setSignup(true) }}>SIGNUP</u></small>
+                                <small style={{ margin: "2vh 0" }}>Already Have An Account? <u onClick={() => {
+                                    setUserInfo({
+                                        email: "",
+                                        username: "",
+                                        password: "",
+                                        confirmPassword: "",
+                                        userAvatar: ""
+                                    })
+                                    setSignup(true)
+                                    setShowPsd(false)
+                                }}>SIGNUP</u></small>
                             </div>
 
                             <div>
@@ -182,23 +193,23 @@ export default function Landing() {
 
                         <form style={{ position: "relative" }} className={signUp ? "show" : "hide"}>
                             <div>
-                                <input type="email" onChange={(e) => { handleinput(e) }}
+                                <input value={userInfo.email} type="email" onChange={(e) => { handleinput(e) }}
                                     name="email" placeholder="email" />
                             </div>
 
                             <div>
-                                <input type="text" onChange={(e) => { handleinput(e) }}
+                                <input value={userInfo.username} type="text" onChange={(e) => { handleinput(e) }}
                                     name="username" placeholder="username" />
                             </div>
 
                             <div >
-                                <input type={showPsd ? "text" : "password"} className={err ? "error" : ""} onChange={(e) => { handleinput(e) }}
+                                <input value={userInfo.password} type="password" className={err ? "error" : ""} onChange={(e) => { handleinput(e) }}
                                     name="password" placeholder="password" />
                                 <span onClick={() => { setShowPsd(!showPsd) }} style={{ position: "absolute", right: "-3vh", top: "21vh", cursor: "pointer" }}>{showPsd ? "👀" : "🙄"}</span>
                             </div>
 
                             <div>
-                                <input type={showPsd ? "text" : "password"} className={err ? "error" : ""} onBlur={checkPassword} onChange={(e) => { handleinput(e) }}
+                                <input value={userInfo.confirmPassword} onPaste={(e)=>{e.preventDefault()}} type={showPsd ? "text" : "password"} className={err ? "error" : ""} onBlur={checkPassword} onChange={(e) => { handleinput(e) }}
                                     name="confirmPassword" placeholder="confirm password" />
                             </div>
 
@@ -216,7 +227,17 @@ export default function Landing() {
 
 
                             <div>
-                                <small style={{ margin: "2vh 0" }}>Already Have An Account? <u onClick={() => { setSignup(false) }}>LOGIN</u></small>
+                                <small style={{ margin: "2vh 0" }}>Already Have An Account? <u onClick={() => {
+                                    setUserInfo({
+                                        email: "",
+                                        username: "",
+                                        password: "",
+                                        confirmPassword: "",
+                                        userAvatar: ""
+                                    })
+                                    setSignup(false)
+                                    setShowPsd(false)
+                                }}>LOGIN</u></small>
                             </div>
 
                         </form>

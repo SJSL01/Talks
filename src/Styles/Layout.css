@@ -1,0 +1,5 @@
+.layout {
+    display: flex;
+    background-color: aqua;
+    height: 100vh;
+}
