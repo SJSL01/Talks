@@ -1,0 +1,112 @@
+.left-nav {
+    font-weight: bold;
+    padding: 0 1vh;
+    color: white;
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    background: #2e2e2f63;
+    box-shadow: 5px 5px 10px rgb(25, 25, 25);
+    border-radius: 20px;
+}
+
+.avatar-container {
+    margin: 0 1vh;
+    display: flex;
+    height: 6vh;
+    width: 6vh;
+}
+
+.avatar-container img {
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 100%;
+}
+
+.options {
+    z-index: 5;
+    position: absolute;
+    top: 9%;
+    left: 0;
+    color: white;
+    font-weight: bold;
+    border-bottom-right-radius: 20px;
+    box-shadow: 5px 5px 10px rgb(25, 25, 25);
+    background: #2e2e2f63;
+    display: flex;
+    width: fit-content;
+    padding: 2vh;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    animation: grow 0.2s linear;
+    opacity: 1;
+}
+
+.options div {
+    margin: 1vh;
+}
+
+.disableOptions {
+    animation: shrink 0.2s linear;
+    float: right;
+    opacity: 0;
+    display: none;
+}
+
+
+@keyframes grow {
+    0% {
+        height: 0;
+        opacity: 0;
+    }
+
+    100% {
+        height: 20vh;
+        opacity: 1;
+
+    }
+}
+@keyframes shrink {
+    0% {
+        height: 20vh;
+        opacity: 1;
+    }
+
+    100% {
+        height: 0vh;
+        opacity: 0;
+
+    }
+}
+
+
+.hideUserName {
+    animation: hideUserName 0.1s linear;
+    opacity: 0;
+}
+
+.showUserName {
+    animation: showUserName 0.1s linear;
+    opacity: 1;
+}
+
+@keyframes hideUserName {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes showUserName {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

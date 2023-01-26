@@ -1,0 +1,39 @@
+.myChats-Container {
+    margin-top: 2vh;
+}
+
+.myChats-Container div {
+    margin: 2vh 0;
+}
+
+.myChats {
+    color: white;
+    font-weight: bold;
+    background: #2e2e2f63;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin: 1vh;
+    padding: 1vh;
+    height: 7vh;
+    border-radius: 25px;
+    box-shadow: 5px 5px 10px rgb(25, 25, 25)
+}
+
+.myChats div {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 6vh;
+}
+
+.myChats p {
+    margin-left: 5vh;
+}
+
+.myChats div img {
+    padding: 0 3vh;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    width: 100%;
+}

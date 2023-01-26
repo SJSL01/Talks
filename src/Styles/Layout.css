@@ -1,5 +1,29 @@
 .layout {
-    display: flex;
-    background-color: aqua;
     height: 100vh;
+    width: 100%;
+    /* background: linear-gradient(to right, #202021, #373737); */
+}
+
+.chat-left {
+    position: relative;
+    padding: 1vh;
+    background: linear-gradient(to right, #202021, #373737);
+    display: flex;
+    flex-direction: column;
+    transition: .5s;
+
+}
+
+.chat-right {
+    background-color: #333333;
+    width: 100%;
+}
+
+.enableBlur>* {
+    filter: blur(10px);
+    transition: 0.5s;
+}
+
+.disableBlur {
+    filter: blur(0);
 }

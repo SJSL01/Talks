@@ -1,52 +1,48 @@
-import { Button } from '@mui/material'
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import React, { useContext, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-
-import { auth, db } from '../firebase'
-
+import { Button } from "@mui/material"
+import { useContext } from "react"
+import UserContext from "../Context/UserContext"
+import "../Styles/Chat.css"
 export default function Chat() {
 
-
-    useEffect(() => {
-       checkUser()
-    }, [])
-
-    const checkUser = async () => {
-
-        const docRef = doc(db, "users", auth.currentUser.uid);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-            console.log("Document data:", docSnap.data());
-
-        } else {
-            save()
-            console.log("No such document!");
-        }
-    }
-
-
-    const save = async () => {
-        console.log("yes");
-        try {
-            await setDoc(doc(db, "users", auth.currentUser.uid), {
-                uid: auth.currentUser.uid,
-                username: auth.currentUser.displayName,
-                email: auth.currentUser.email,
-                photoURL: auth.currentUser.photoURL
-            });
-
-            //create empty user chats on firestore
-            await setDoc(doc(db, "userChats", auth.currentUser.uid), {});
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    const { selectedUser } = useContext(UserContext)
 
 
     return (
-        <div>
-            <h1>CHAT</h1>
+        <div className="chat-container">
+            <div className="chat-top">
+                <div>
+                    {selectedUser && <h1>{selectedUser?.username}</h1>}
+                </div>
+                <div className="chat-avatar">
+                    <img src={selectedUser?.photoURL} alt="" />
+                </div>
+
+            </div>
+            <div className="text-area">
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+            </div>
+            <div className="send">
+                <input type="text" />
+                <Button variant="contained">✔</Button>
+            </div>
         </div>
     )
 }

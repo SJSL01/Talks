@@ -45,7 +45,7 @@ export default function Landing() {
             }
         } catch (error) {
             setLoading(false)
-            // //console.log(error.message);
+            console.log(error.message);
             if (error.message === "Firebase: Error (auth/user-not-found).") {
                 toast.error(`No user exists with ${userInfo.email}`)
             }
@@ -141,7 +141,7 @@ export default function Landing() {
 
     return (
         <>
-            {!loggedIn?.emailVerified ? <div className="landing-container" >
+            {!loggedIn?.emailVerified ? <div style={{ display: "flex" }} className="landing-container show" >
                 <div className="left">
                     <h1>
                         TALKS
@@ -209,7 +209,7 @@ export default function Landing() {
                             </div>
 
                             <div>
-                                <input value={userInfo.confirmPassword} onPaste={(e)=>{e.preventDefault()}} type={showPsd ? "text" : "password"} className={err ? "error" : ""} onBlur={checkPassword} onChange={(e) => { handleinput(e) }}
+                                <input value={userInfo.confirmPassword} onPaste={(e) => { e.preventDefault() }} type={showPsd ? "text" : "password"} className={err ? "error" : ""} onBlur={checkPassword} onChange={(e) => { handleinput(e) }}
                                     name="confirmPassword" placeholder="confirm password" />
                             </div>
 
