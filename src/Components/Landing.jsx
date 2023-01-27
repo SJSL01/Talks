@@ -41,7 +41,7 @@ export default function Landing() {
             } else {
                 toast.success("Loggin' In")
                 navigate("/chat", { replace: true })
-                loading(false)
+                setLoading(false)
             }
         } catch (error) {
             setLoading(false)

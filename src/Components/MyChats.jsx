@@ -7,7 +7,7 @@ import "../Styles/MyChats.css"
 
 export default function MyChats() {
 
-    const { user, searchedUser, checkIfConvoExists, setSelectedUser } = useContext(UserContext)
+    const { user, searchedUser, checkIfConvoExists, setSelectedUser, selectedUser } = useContext(UserContext)
 
     const [chats, setChats] = useState([])
 
@@ -47,9 +47,11 @@ export default function MyChats() {
                 <h3 style={{ textAlign: "center", color: "white" }}>My Chats</h3>
                 {Object.entries(chats).map(chat => {
                     return (
-                        <div className='myChats' onClick={() => {
-                            setSelectedUser(chat[1].userInfo)
-                        }}>
+                        <div
+                            style={selectedUser?.uid == chat[1].userInfo.uid ? { backgroundColor: "gray" } : {}}
+                            className='myChats' onClick={() => {
+                                setSelectedUser(chat[1].userInfo)
+                            }}>
 
                             <div>
                                 <img src={chat[1].userInfo.photoURL} alt="" />

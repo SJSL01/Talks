@@ -13,7 +13,7 @@
     flex: 0;
 }
 
-.chat-top div{
+.chat-top div {
     margin: 0 2vh;
 }
 
@@ -30,6 +30,7 @@
 }
 
 .text-area {
+    color: black;
     flex: 2;
     width: 100%;
     background-color: rgb(255, 255, 255);

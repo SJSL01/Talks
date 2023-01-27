@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc, collection, query, where, getDocs, updateDoc, serverTimestamp } from "firebase/firestore";
+import { doc, getDoc, setDoc, collection, query, where, getDocs, updateDoc, serverTimestamp, onSnapshot } from "firebase/firestore";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { useState } from "react";
@@ -22,6 +22,8 @@ export const UserContextProvider = ({ children }) => {
     const [userOptions, setUserOptions] = useState(false)
 
     const [selectedUser, setSelectedUser] = useState(null)
+
+    const [messages, setMessages] = useState([])
 
 
     const checkUser = async () => {
@@ -126,6 +128,28 @@ export const UserContextProvider = ({ children }) => {
 
 
 
+    useEffect(() => {
+
+
+        if (selectedUser) {
+            const roomId = selectedUser?.uid > user?.uid ? selectedUser?.uid + user?.uid : user?.uid + selectedUser?.uid
+            // console.log(roomId);
+            const unSub = onSnapshot(doc(db, "chat", roomId), (doc) => {
+                // console.log(doc.data().messages);
+                doc.exists() && setMessages(doc.data().messages)
+            })
+
+            return () => {
+                unSub()
+            }
+        }
+    }, [selectedUser])
+
+    // console.log(messages);
+
+
+
+
 
     return (
         <UserContext.Provider value={{
@@ -135,7 +159,8 @@ export const UserContextProvider = ({ children }) => {
             searchedUser, setSearchedUser,
             checkIfConvoExists,
             setUserOptions, userOptions,
-            setSelectedUser, selectedUser
+            setSelectedUser, selectedUser,
+            setMessages, messages
         }}>
             {children}
         </UserContext.Provider>
