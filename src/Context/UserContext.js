@@ -130,7 +130,6 @@ export const UserContextProvider = ({ children }) => {
 
     useEffect(() => {
 
-
         if (selectedUser) {
             const roomId = selectedUser?.uid > user?.uid ? selectedUser?.uid + user?.uid : user?.uid + selectedUser?.uid
             // //console.log(roomId);
@@ -146,8 +145,6 @@ export const UserContextProvider = ({ children }) => {
     }, [selectedUser])
 
     // //console.log(messages);
-
-
 
 
 

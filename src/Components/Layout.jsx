@@ -11,7 +11,7 @@ import { auth } from '../firebase'
 export default function Layout() {
 
 
-    const { user, checkUser, userOptions } = useContext(UserContext)
+    const { user, checkUser, userOptions, selectedUser } = useContext(UserContext)
 
     useEffect(() => {
         checkUser()
@@ -24,10 +24,10 @@ export default function Layout() {
         <>
             {user?.uid === auth.currentUser.uid ?
                 <div style={{ display: "flex" }} className={user?.uid === auth.currentUser.uid ? "show layout" : "hide layout"}>
-                    <div className={userOptions ? "chat-left enableBlur" : "chat-left"}>
+                    {selectedUser === null && <div className={userOptions ? "chat-left enableBlur" : "chat-left"}>
                         <Leftnav />
                         <AllUsers />
-                    </div>
+                    </div>}
                     <div className="chat-right">
                         <Chat />
                     </div>

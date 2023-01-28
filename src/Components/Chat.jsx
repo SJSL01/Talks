@@ -16,7 +16,7 @@ export default function Chat() {
 
     const [uploading, setUploading] = useState(null)
 
-    const { user, selectedUser, messages, setMessages } = useContext(UserContext)
+    const { user, selectedUser, messages, setMessages, setSelectedUser } = useContext(UserContext)
 
     useEffect(() => {
         setMessages([])
@@ -53,7 +53,7 @@ export default function Chat() {
                     // Observe state change events such as progress, pause, and resume
                     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
                     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    setUploading(progress)
+                    setUploading(progress).toFixed(0)
                     console.log('Upload is ' + progress + '% done');
                     switch (snapshot.state) {
                         case 'paused':
@@ -107,6 +107,9 @@ export default function Chat() {
         <div className="chat-container">
             {selectedUser ? <>
                 <div className="chat-top">
+                    <div onClick={() => { setSelectedUser(null) }}>
+                        ⬅
+                    </div>
                     <div>
                         {selectedUser && <h3>{selectedUser?.username}</h3>}
                     </div>
@@ -125,7 +128,7 @@ export default function Chat() {
                                     <small style={{ fontSize: "1vh" }}>{message.senderId === user.uid ? "ME" : selectedUser.username}</small>
                                 </div>
 
-                                <div style={{ width: "10vh" }}>
+                                <div style={{ width: "20vh" }}>
                                     {message.img && <img style={{ width: "100%" }} src={message.img} alt="" />}
                                 </div>
 

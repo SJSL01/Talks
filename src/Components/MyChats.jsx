@@ -25,6 +25,8 @@ export default function MyChats() {
 
 
     return (
+
+
         <div className='myChats-Container'>
             {searchedUser &&
                 <>
@@ -54,7 +56,7 @@ export default function MyChats() {
                             }}>
 
                             <div>
-                                <img src={chat[1].userInfo.photoURL} alt="" />
+                                <img referrerPolicy='no-referrer' src={chat[1].userInfo.photoURL} alt="" />
                             </div>
                             <p >
                                 {chat[1].userInfo.username}
@@ -66,5 +68,6 @@ export default function MyChats() {
                 })}
             </div>
         </div >
+        
     )
 }
