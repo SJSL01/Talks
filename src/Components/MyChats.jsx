@@ -21,7 +21,7 @@ export default function MyChats() {
         }
     }, [user.uid])
 
-    console.log(Object.entries(chats));
+    //console.log(Object.entries(chats));
 
 
     return (

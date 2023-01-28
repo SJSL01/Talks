@@ -18,7 +18,7 @@ export default function Chat() {
 
     useEffect(() => {
         setMessages([])
-        console.log(selectedUser?.username);
+        //console.log(selectedUser?.username);
     }, [selectedUser])
 
     useEffect(() => {
@@ -43,15 +43,15 @@ export default function Chat() {
 
             const uploadTask = uploadBytesResumable(storageRef, media);
 
-            console.log(media);
-            console.log(uploadTask);
+            //console.log(media);
+            //console.log(uploadTask);
             uploadTask.on(
                 (error) => {
-                    console.log(error);
+                    //console.log(error);
                 },
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-                        console.log(downloadURL);
+                        //console.log(downloadURL);
                         await updateDoc(doc(db, "chat", roomId), {
                             messages: arrayUnion({
                                 text,
@@ -82,7 +82,7 @@ export default function Chat() {
         setText("")
     }
 
-    console.log(messages);
+    //console.log(messages);
 
     return (
         <div className="chat-container">

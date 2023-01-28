@@ -35,12 +35,12 @@ export const UserContextProvider = ({ children }) => {
             setUser(docSnap.data())
         } else {
             save()
-            console.log("No such document!");
+            //console.log("No such document!");
         }
     }
 
     const save = async () => {
-        console.log("gooGle");
+        //console.log("gooGle");
         try {
             await setDoc(doc(db, "users", auth.currentUser.uid), {
                 uid: auth.currentUser.uid,
@@ -51,7 +51,7 @@ export const UserContextProvider = ({ children }) => {
             await setDoc(doc(db, "userChats", auth.currentUser.uid), {});
 
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         }
     }
 
@@ -74,12 +74,12 @@ export const UserContextProvider = ({ children }) => {
 
             querySnapshot.forEach((doc) => {
                 setSearchedUser(doc.data())
-                console.log(doc.data());
+                //console.log(doc.data());
             });
 
         } catch (error) {
             setSearchedUser(null)
-            console.log(error);
+            //console.log(error);
         }
     }
 
@@ -87,7 +87,7 @@ export const UserContextProvider = ({ children }) => {
     const checkIfConvoExists = async () => {
 
         const roomId = searchedUser.uid > user.uid ? searchedUser.uid + user.uid : user.uid + searchedUser.uid
-        console.log(roomId);
+        //console.log(roomId);
         try {
             const res = await getDoc(doc(db, "chat", roomId))
 
@@ -122,7 +122,7 @@ export const UserContextProvider = ({ children }) => {
             setSearch(null)
 
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         }
     }
 
@@ -133,9 +133,9 @@ export const UserContextProvider = ({ children }) => {
 
         if (selectedUser) {
             const roomId = selectedUser?.uid > user?.uid ? selectedUser?.uid + user?.uid : user?.uid + selectedUser?.uid
-            // console.log(roomId);
+            // //console.log(roomId);
             const unSub = onSnapshot(doc(db, "chat", roomId), (doc) => {
-                // console.log(doc.data().messages);
+                // //console.log(doc.data().messages);
                 doc.exists() && setMessages(doc.data().messages)
             })
 
@@ -145,7 +145,7 @@ export const UserContextProvider = ({ children }) => {
         }
     }, [selectedUser])
 
-    // console.log(messages);
+    // //console.log(messages);
 
 
 

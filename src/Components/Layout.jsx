@@ -18,7 +18,7 @@ export default function Layout() {
 
     }, [])
 
-    console.log(userOptions);
+    //console.log(userOptions);
 
     return (
         <>

@@ -34,7 +34,7 @@ export default function Landing() {
         e.preventDefault()
         try {
             const res = await signInWithEmailAndPassword(auth, userInfo.email, userInfo.password)
-            //console.log(res);
+            //////console.log(res);
             if (!res.user.emailVerified) {
                 toast("Please Verify Your Email To Continue")
                 setLoading(false)
@@ -45,7 +45,7 @@ export default function Landing() {
             }
         } catch (error) {
             setLoading(false)
-            console.log(error.message);
+            ////console.log(error.message);
             if (error.message === "Firebase: Error (auth/user-not-found).") {
                 toast.error(`No user exists with ${userInfo.email}`)
             }
@@ -82,7 +82,7 @@ export default function Landing() {
 
                         //create empty user chats on firestore
                         await setDoc(doc(db, "userChats", res.user.uid), {});
-                        //console.log(auth.currentUser);
+                        //////console.log(auth.currentUser);
                         await sendEmailVerification()
                         toast.success("You are onboard!!!! Confirm Mail Now 👍🏻")
                         setLoading(false)
@@ -93,14 +93,14 @@ export default function Landing() {
                     }
                     catch (error) {
                         setLoading(false)
-                        //console.log(error);
+                        //////console.log(error);
                     }
 
                 });
             });
         } catch (error) {
             setLoading(false)
-            //console.log(error);
+            //////console.log(error);
             if (error.message === "Firebase: Error (auth/email-already-in-use).") {
                 toast.error(`${userInfo.email} already exists`)
             }
@@ -122,7 +122,7 @@ export default function Landing() {
     const navigate = useNavigate();
 
     const [loggedIn] = useAuthState(auth)
-    //console.log(loggedIn);
+    //////console.log(loggedIn);
 
     const [sendEmailVerification] = useSendEmailVerification(auth);
 
@@ -132,9 +132,9 @@ export default function Landing() {
         e.preventDefault()
         try {
             const res = await SigninWithGoogle()
-            //console.log(res);
+            //////console.log(res);
         } catch (error) {
-            //console.log(error);
+            //////console.log(error);
         }
     }
 
