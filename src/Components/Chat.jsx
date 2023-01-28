@@ -14,6 +14,8 @@ export default function Chat() {
 
     const view = useRef()
 
+    const [uploading, setUploading] = useState(null)
+
     const { user, selectedUser, messages, setMessages } = useContext(UserContext)
 
     useEffect(() => {
@@ -31,7 +33,7 @@ export default function Chat() {
     const handleSend = async () => {
 
 
-        if (text === "") {
+        if (text === "" && media === null) {
             return
         }
         const roomId = selectedUser?.uid > user?.uid ? selectedUser?.uid + user?.uid : user?.uid + selectedUser?.uid
@@ -46,8 +48,24 @@ export default function Chat() {
             //console.log(media);
             //console.log(uploadTask);
             uploadTask.on(
+                'state_changed',
+                (snapshot) => {
+                    // Observe state change events such as progress, pause, and resume
+                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    setUploading(progress)
+                    console.log('Upload is ' + progress + '% done');
+                    switch (snapshot.state) {
+                        case 'paused':
+                            console.log('Upload is paused');
+                            break;
+                        case 'running':
+                            console.log('Upload is running');
+                            break;
+                    }
+                },
                 (error) => {
-                    //console.log(error);
+                    console.log(error);
                 },
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
@@ -78,6 +96,7 @@ export default function Chat() {
             })
 
         }
+        setUploading(null)
         setMedia(null)
         setText("")
     }
@@ -119,6 +138,7 @@ export default function Chat() {
                             </div>
                         )
                     })}
+                    {uploading && <div className="disableBlur">{uploading}</div>}
                     <div ref={view}></div>
                 </div>
 
@@ -142,7 +162,7 @@ export default function Chat() {
                         <input accept="image/*" onChange={(e) => setMedia(e.target.files[0])} style={{ display: "none" }}
                             type="file" id="media" />
 
-                        <button style={{ margin: "0 5vh", backgroundColor: "lightgreen" }} onClick={handleSend}>Send✔</button>
+                        <button style={{ margin: "0 5vh", backgroundColor: "lightgreen" }} onClick={() => { handleSend() }}>Send✔</button>
                     </div>
 
 

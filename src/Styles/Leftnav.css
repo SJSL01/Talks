@@ -1,8 +1,8 @@
 .left-nav {
     font-weight: bold;
-    padding: 0 1vh;
+    padding: 1vh;
     color: white;
-    height: 8vh;
+    /* height: 8vh; */
     display: flex;
     align-items: center;
     background: #2e2e2f63;
@@ -122,5 +122,6 @@
     .left-nav div:nth-child(2) {
         display: none;
     }
+
 
 }
