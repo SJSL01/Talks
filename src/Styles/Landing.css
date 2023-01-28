@@ -55,7 +55,7 @@ form div {
 }
 
 
-input {
+.input {
     overflow: hidden;
     color: white;
     font-weight: bold;
@@ -70,7 +70,7 @@ input {
     text-align: center;
 }
 
-input:focus {
+.input:focus {
     height: 7vh;
     color: black;
     background-color: white;

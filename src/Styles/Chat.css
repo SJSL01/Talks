@@ -30,6 +30,7 @@
 }
 
 .text-area {
+    overflow-y: scroll;
     color: black;
     flex: 2;
     width: 100%;

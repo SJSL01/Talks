@@ -2,19 +2,28 @@
 import { Button } from "@mui/material"
 import { arrayUnion, doc, Timestamp, updateDoc } from "firebase/firestore"
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import UserContext from "../Context/UserContext"
 import { db, storage } from "../firebase"
 import "../Styles/Chat.css"
 import { format } from "timeago.js"
+
+import { uuidv4 } from "@firebase/util"
+
 export default function Chat() {
+
+    const view = useRef()
 
     const { user, selectedUser, messages, setMessages } = useContext(UserContext)
 
-
     useEffect(() => {
         setMessages([])
+        console.log(selectedUser?.username);
     }, [selectedUser])
+
+    useEffect(() => {
+        view.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages])
 
     const [text, setText] = useState("")
     const [media, setMedia] = useState(null)
@@ -24,24 +33,32 @@ export default function Chat() {
 
 
         if (media) {
+
+            const storageRef = ref(storage, uuidv4());
+
+            const uploadTask = uploadBytesResumable(storageRef, media);
+
             console.log(media);
-
-            const storageRef = ref(storage, Date.now());
-            await uploadBytesResumable(storageRef, media).then(() => {
-                getDownloadURL(storageRef).then(async (downloadURL) => {
-
-                    await updateDoc(doc(db, "chat", roomId), {
-                        messages: arrayUnion({
-                            text,
-                            media: downloadURL,
-                            senderId: user.uid,
-                            receiverId: selectedUser.uid,
-                            date: Timestamp.now()
-                        })
-                    })
-
-                });
-            });
+            console.log(uploadTask);
+            uploadTask.on(
+                (error) => {
+                    console.log(error);
+                },
+                () => {
+                    getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+                        console.log(downloadURL);
+                        await updateDoc(doc(db, "chat", roomId), {
+                            messages: arrayUnion({
+                                text,
+                                senderId: user.uid,
+                                receiverId: selectedUser.uid,
+                                date: Date.now(),
+                                img: downloadURL,
+                            }),
+                        });
+                    });
+                }
+            );
 
 
         } else {
@@ -56,12 +73,11 @@ export default function Chat() {
             })
 
         }
-
         setMedia(null)
         setText("")
     }
 
-
+    console.log(messages);
 
     return (
         <div className="chat-container">
@@ -84,16 +100,18 @@ export default function Chat() {
                                     style={{ height: "5vh", width: "5vh" }} alt="" />
                                 {message.text}
                                 <span>{format(message.date)}</span>
+                                {message.img && <img style={{ height: "50vh", width: "50vh" }} src={message.img} alt="" />}
                             </p>
                         )
                     })}
+                    <div ref={view}></div>
                 </div>
 
 
                 <div className="send">
 
 
-                    <input type="text" value={text} onChange={(e) => { setText(e.target.value) }} />
+                    <input type="text" onKeyDown={(e) => { e.code === "Enter" && handleSend() }} value={text} onChange={(e) => { setText(e.target.value) }} />
 
                     <div style={{ marginTop: "3vh" }}>
 
@@ -109,7 +127,7 @@ export default function Chat() {
                     </div>
 
 
-                    <Button onClick={handleSend} variant="contained">✔</Button>
+                    <button onClick={handleSend}>✔</button>
 
 
                 </div>

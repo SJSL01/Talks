@@ -110,6 +110,7 @@ export default function Landing() {
     const [err, setErr] = useState(false)
 
     const checkPassword = () => {
+        if (userInfo.confirmPassword === "") return
         if (userInfo.password !== userInfo.confirmPassword) {
             setErr(true)
         } else setErr(false)
@@ -154,12 +155,12 @@ export default function Landing() {
 
                         <form style={{ position: "relative" }} className={signUp ? "hide" : "show"}>
                             <div>
-                                <input value={userInfo.email} type="email" onChange={(e) => { handleinput(e) }}
+                                <input className="input" value={userInfo.email} type="email" onChange={(e) => { handleinput(e) }}
                                     name="email" placeholder="email" />
                             </div>
 
                             <div>
-                                <input value={userInfo.password} type={showPsd ? "text" : "password"} onChange={(e) => { handleinput(e) }}
+                                <input className="input" value={userInfo.password} type={showPsd ? "text" : "password"} onChange={(e) => { handleinput(e) }}
                                     name="password" placeholder="password" />
                                 <span onClick={() => { setShowPsd(!showPsd) }} style={{ position: "absolute", right: "-3vh", cursor: "pointer" }}>{showPsd ? "👀" : "🙄"}</span>
                             </div>
@@ -193,23 +194,30 @@ export default function Landing() {
 
                         <form style={{ position: "relative" }} className={signUp ? "show" : "hide"}>
                             <div>
-                                <input value={userInfo.email} type="email" onChange={(e) => { handleinput(e) }}
+                                <input className="input" value={userInfo.email} type="email" onChange={(e) => { handleinput(e) }}
                                     name="email" placeholder="email" />
                             </div>
 
                             <div>
-                                <input value={userInfo.username} type="text" onChange={(e) => { handleinput(e) }}
+                                <input className="input" value={userInfo.username} type="text" onChange={(e) => { handleinput(e) }}
                                     name="username" placeholder="username" />
                             </div>
 
                             <div >
-                                <input value={userInfo.password} type="password" className={err ? "error" : ""} onChange={(e) => { handleinput(e) }}
-                                    name="password" placeholder="password" />
+                                <input value={userInfo.password} type="password"
+                                    className={err ? "error input" : "input"}
+                                    onChange={(e) => { handleinput(e) }}
+                                    onBlur={checkPassword}
+                                    name="password" placeholder="password"
+                                    onPaste={(e) => { e.preventDefault() }} />
+
                                 <span onClick={() => { setShowPsd(!showPsd) }} style={{ position: "absolute", right: "-3vh", top: "21vh", cursor: "pointer" }}>{showPsd ? "👀" : "🙄"}</span>
                             </div>
 
                             <div>
-                                <input value={userInfo.confirmPassword} onPaste={(e) => { e.preventDefault() }} type={showPsd ? "text" : "password"} className={err ? "error" : ""} onBlur={checkPassword} onChange={(e) => { handleinput(e) }}
+                                <input value={userInfo.confirmPassword} onPaste={(e) => { e.preventDefault() }}
+                                    type={showPsd ? "text" : "password"} className={err ? "error input" : "input"}
+                                    onBlur={checkPassword} onChange={(e) => { handleinput(e) }}
                                     name="confirmPassword" placeholder="confirm password" />
                             </div>
 
