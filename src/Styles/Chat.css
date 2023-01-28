@@ -89,21 +89,23 @@
 
 
 .send {
+    box-shadow: 5px 5px 10px rgb(190, 190, 190);
     display: flex;
     align-items: center;
-    flex: 0;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 6vh;
 }
 
-.send div {
-    margin: 0 1vh;
+.send div:first-child {
+    width: 60%;
 }
 
 .send textarea {
-
-    padding: 0 2vh;
     border: 0;
     border-radius: 10px;
     resize: none;
+    width: 100%;
 }
 
 .send textarea::-webkit-scrollbar {

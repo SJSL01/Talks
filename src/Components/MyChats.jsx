@@ -47,7 +47,7 @@ export default function MyChats() {
 
             <div>
                 <h3 style={{ textAlign: "center", color: "white" }}>My Chats</h3>
-                {Object.entries(chats).map(chat => {
+                {Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date).map((chat) => {
                     return (
                         <div
                             style={selectedUser?.uid == chat[1].userInfo.uid ? { backgroundColor: "gray" } : {}}
@@ -61,6 +61,9 @@ export default function MyChats() {
                             <p >
                                 {chat[1].userInfo.username}
                             </p>
+                            <p>
+                                {chat[1].lastText}
+                            </p>
 
 
                         </div>
@@ -68,6 +71,6 @@ export default function MyChats() {
                 })}
             </div>
         </div >
-        
+
     )
 }

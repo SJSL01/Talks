@@ -15,7 +15,6 @@ export default function Layout() {
 
     useEffect(() => {
         checkUser()
-
     }, [])
 
     //console.log(userOptions);
@@ -24,17 +23,17 @@ export default function Layout() {
         <>
             {user?.uid === auth.currentUser.uid ?
                 <div style={{ display: "flex" }} className={user?.uid === auth.currentUser.uid ? "show layout" : "hide layout"}>
-                    {selectedUser === null && <div className={userOptions ? "chat-left enableBlur" : "chat-left"}>
+                    <div className={userOptions ? "chat-left enableBlur" : "chat-left"}>
                         <Leftnav />
                         <AllUsers />
-                    </div>}
+                    </div>
                     <div className="chat-right">
                         <Chat />
                     </div>
                 </div>
                 :
 
-                <h1 className={user?.uid != auth.currentUser.uid ? "show" : "hide"}>
+                <h1 className={user?.uid != auth.currentUser?.uid ? "show" : "hide"}>
                     LOADING
                 </h1>}
         </>

@@ -12,6 +12,8 @@ import { uuidv4 } from "@firebase/util"
 
 export default function Chat() {
 
+    const [text, setText] = useState("")
+    const [media, setMedia] = useState(null)
     const view = useRef()
 
     const [uploading, setUploading] = useState(null)
@@ -25,10 +27,36 @@ export default function Chat() {
 
     useEffect(() => {
         view.current?.scrollIntoView({ behavior: "smooth" });
-    }, [messages])
+    }, [messages, media])
 
-    const [text, setText] = useState("")
-    const [media, setMedia] = useState(null)
+    const cloud = useRef()
+    const widgetRef = useRef()
+
+    useEffect(() => {
+        cloud.current = window.cloudinary
+        widgetRef.current = cloud.current.createUploadWidget({
+            cloudName: process.env.REACT_APP_CLOUD_NAME,
+            uploadPreset: "gyogibwu",
+            cropping: true, //add a cropping step
+            // showAdvancedOptions: true, //add advanced options (public_id and tag)
+            sources: ["local", "camera"], // restrict the upload sources to URL and local files
+            // multiple: false,  //restrict upload to a single file
+            folder: user.displayName, //upload files to the specified folder
+            // tags: ["users", "profile"], //add the given tags to the uploaded files
+            // context: {alt: "user_uploaded"}, //add the given context data to the uploaded files
+            // clientAllowedFormats: ["images"], //restrict uploading to image files only
+            // maxImageFileSize: 2000000 //restrict file size to less than 2MB
+            // maxImageWidth: 2000, //Scales the image down to a width of 2000 pixels before uploading
+            theme: "purple" //change to a purple theme
+        }, (err, res) => {
+            if (res.info.secure_url != undefined) {
+                setMedia(res.info.secure_url)
+                console.log(res);
+            }
+        })
+        // console.log(cloud.current);
+    }, [])
+
 
     const handleSend = async () => {
 
@@ -40,48 +68,48 @@ export default function Chat() {
 
 
         if (media) {
+            console.log(media);
+            // const storageRef = ref(storage, uuidv4());
 
-            const storageRef = ref(storage, uuidv4());
+            // const uploadTask = uploadBytesResumable(storageRef, media);
 
-            const uploadTask = uploadBytesResumable(storageRef, media);
-
-            //console.log(media);
-            //console.log(uploadTask);
-            uploadTask.on(
-                'state_changed',
-                (snapshot) => {
-                    // Observe state change events such as progress, pause, and resume
-                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    setUploading(progress).toFixed(0)
-                    console.log('Upload is ' + progress + '% done');
-                    switch (snapshot.state) {
-                        case 'paused':
-                            console.log('Upload is paused');
-                            break;
-                        case 'running':
-                            console.log('Upload is running');
-                            break;
-                    }
-                },
-                (error) => {
-                    console.log(error);
-                },
-                () => {
-                    getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-                        //console.log(downloadURL);
-                        await updateDoc(doc(db, "chat", roomId), {
-                            messages: arrayUnion({
-                                text,
-                                senderId: user.uid,
-                                receiverId: selectedUser.uid,
-                                date: Date.now(),
-                                img: downloadURL,
-                            }),
-                        });
-                    });
-                }
-            );
+            // //console.log(media);
+            // //console.log(uploadTask);
+            // uploadTask.on(
+            //     'state_changed',
+            //     (snapshot) => {
+            //         // Observe state change events such as progress, pause, and resume
+            //         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            //         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            //         setUploading(progress).toFixed(0)
+            //         console.log('Upload is ' + progress + '% done');
+            //         switch (snapshot.state) {
+            //             case 'paused':
+            //                 console.log('Upload is paused');
+            //                 break;
+            //             case 'running':
+            //                 console.log('Upload is running');
+            //                 break;
+            //         }
+            //     },
+            //     (error) => {
+            //         console.log(error);
+            //     },
+            //     () => {
+            //         getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+            //             //console.log(downloadURL);
+            await updateDoc(doc(db, "chat", roomId), {
+                messages: arrayUnion({
+                    text,
+                    senderId: user.uid,
+                    receiverId: selectedUser.uid,
+                    date: Date.now(),
+                    img: media,
+                }),
+            });
+            // });
+            // }
+            // );
 
 
         } else {
@@ -124,11 +152,11 @@ export default function Chat() {
                             <div className={message.receiverId !== user.uid ? "my disableBlur" : "disableBlur other"} >
                                 <div>
                                     <img src={message.senderId === user.uid ? user.photoURL : selectedUser.photoURL}
-                                        style={{ height: "2vh", width: "2vh", borderRadius: "50%" }} alt="" />
-                                    <small style={{ fontSize: "1vh" }}>{message.senderId === user.uid ? "ME" : selectedUser.username}</small>
+                                        style={{ height: "5vh", width: "5vh", borderRadius: "50%" }} alt="" />
+                                    <small style={{ fontSize: "1.5vh" }}>{message.senderId === user.uid ? "ME" : selectedUser.username}</small>
                                 </div>
 
-                                <div style={{ width: "20vh" }}>
+                                <div style={{ width: "30vw" }}>
                                     {message.img && <img style={{ width: "100%" }} src={message.img} alt="" />}
                                 </div>
 
@@ -142,6 +170,10 @@ export default function Chat() {
                         )
                     })}
                     {uploading && <div className="disableBlur">{uploading}</div>}
+                    {media &&
+                        <div ref={view} className="my disableBlur">
+                            <img src={media} alt="" />
+                        </div>}
                     <div ref={view}></div>
                 </div>
 
@@ -155,17 +187,19 @@ export default function Chat() {
 
 
                     <div>
+                        <span onClick={() => { widgetRef.current.open() }}>📎</span>
 
-                        <label htmlFor="media">
+
+                        {/* <label htmlFor="media">
 
                             <span>📎</span>
 
                         </label>
 
                         <input accept="image/*" onChange={(e) => setMedia(e.target.files[0])} style={{ display: "none" }}
-                            type="file" id="media" />
+                            type="file" id="media" /> */}
 
-                        <button style={{ margin: "0 5vh", backgroundColor: "lightgreen" }} onClick={() => { handleSend() }}>Send✔</button>
+                        <button style={{ marginR: "0 5vh", backgroundColor: "lightgreen" }} onClick={() => { handleSend() }}>Send✔</button>
                     </div>
 
 
