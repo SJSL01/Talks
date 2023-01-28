@@ -29,6 +29,11 @@ export default function Chat() {
     const [media, setMedia] = useState(null)
 
     const handleSend = async () => {
+
+
+        if (text === "") {
+            return
+        }
         const roomId = selectedUser?.uid > user?.uid ? selectedUser?.uid + user?.uid : user?.uid + selectedUser?.uid
 
 
@@ -84,24 +89,34 @@ export default function Chat() {
             {selectedUser ? <>
                 <div className="chat-top">
                     <div>
-                        {selectedUser && <h1>{selectedUser?.username}</h1>}
+                        {selectedUser && <h3>{selectedUser?.username}</h3>}
                     </div>
                     <div className="chat-avatar">
                         <img src={selectedUser?.photoURL} alt="" />
                     </div>
 
                 </div>
-                <div className="text-area">
+                <div className="text-area enableBlur">
                     {messages.map(message => {
                         return (
-                            <p >
-                                <span>{message.senderId === user.uid ? "ME" : selectedUser.username}</span>
-                                <img src={message.senderId === user.uid ? user.photoURL : selectedUser.photoURL}
-                                    style={{ height: "5vh", width: "5vh" }} alt="" />
-                                {message.text}
-                                <span>{format(message.date)}</span>
-                                {message.img && <img style={{ height: "50vh", width: "50vh" }} src={message.img} alt="" />}
-                            </p>
+                            <div className={message.receiverId !== user.uid ? "my disableBlur" : "disableBlur other"} >
+                                <div>
+                                    <img src={message.senderId === user.uid ? user.photoURL : selectedUser.photoURL}
+                                        style={{ height: "2vh", width: "2vh", borderRadius: "50%" }} alt="" />
+                                    <small style={{ fontSize: "1vh" }}>{message.senderId === user.uid ? "ME" : selectedUser.username}</small>
+                                </div>
+
+                                <div style={{ width: "10vh" }}>
+                                    {message.img && <img style={{ width: "100%" }} src={message.img} alt="" />}
+                                </div>
+
+                                <div className="text" >
+                                    {message.text}
+                                </div>
+                                <div>
+                                    <small style={{ fontSize: ".9vh" }}>{format(message.date)}</small>
+                                </div>
+                            </div>
                         )
                     })}
                     <div ref={view}></div>
@@ -111,9 +126,12 @@ export default function Chat() {
                 <div className="send">
 
 
-                    <input type="text" onKeyDown={(e) => { e.code === "Enter" && handleSend() }} value={text} onChange={(e) => { setText(e.target.value) }} />
+                    <div>
+                        <textarea type="text" onKeyDown={(e) => { e.code === "Enter" && handleSend() }} value={text} onChange={(e) => { setText(e.target.value) }} />
+                    </div>
 
-                    <div style={{ marginTop: "3vh" }}>
+
+                    <div>
 
                         <label htmlFor="media">
 
@@ -124,10 +142,9 @@ export default function Chat() {
                         <input accept="image/*" onChange={(e) => setMedia(e.target.files[0])} style={{ display: "none" }}
                             type="file" id="media" />
 
+                        <button style={{ margin: "0 5vh", backgroundColor: "lightgreen" }} onClick={handleSend}>Send✔</button>
                     </div>
 
-
-                    <button onClick={handleSend}>✔</button>
 
 
                 </div>

@@ -30,14 +30,16 @@ export default function Leftnav() {
                 </div>
 
                 <div className={userOptions ? "hideUserName" : "showUserName"}
-                 onClick={() => { setUserOptions(!userOptions) }}
+                    onClick={() => { setUserOptions(!userOptions) }}
                     style={{ margin: "0 1vh", cursor: "pointer" }}>
                     {user?.username}
                 </div>
 
                 <input style={{ margin: "0" }}
                     type="text" placeholder='Search a User'
-                    value={search === null ? "" : search} onKeyDown={(e) => { e.code === "Enter" && searchUser() }}
+                    value={search === null ? "" : search}
+                    className="input"
+                    onKeyDown={(e) => { e.code === "Enter" && searchUser() }}
                     onChange={(e) => {
                         if (searchedUser) setSearchedUser(null)
                         setSearch(e.target.value)
@@ -50,6 +52,8 @@ export default function Leftnav() {
                     {user?.username}
                 </div>
                 <div>
+
+                    
 
                     <Button variant="contained" color="error"
                         onClick={() => {

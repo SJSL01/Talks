@@ -67,6 +67,7 @@
 
     }
 }
+
 @keyframes shrink {
     0% {
         height: 20vh;
@@ -109,4 +110,17 @@
     100% {
         opacity: 1;
     }
+}
+
+@media screen and (width<500px) {
+    .left-nav {
+        /* flex-direction: column-reverse; */
+        height: fit-content;
+        font-size: 2vh;
+    }
+
+    .left-nav div:nth-child(2) {
+        display: none;
+    }
+
 }

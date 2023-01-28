@@ -37,3 +37,15 @@
     aspect-ratio: 1/1;
     width: 100%;
 }
+
+
+@media screen and (width<500px) {
+    .myChats p {
+        font-size: 2vh;
+    }
+
+    .myChats div img {
+        padding: 0 2vh;
+    }
+
+}

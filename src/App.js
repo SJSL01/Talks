@@ -6,28 +6,30 @@ import { UserContextProvider } from "./Context/UserContext";
 import { ToastContextProvider } from "./Context/ToastContext";
 
 
+
 function App() {
 
   return (
-    <BrowserRouter>
 
-      <ToastContextProvider>
-        <UserContextProvider>
+      <BrowserRouter>
 
-
-
-          <Routes>
-            <Route path="/" element={<Landing />} />
-
-            <Route path="/chat" element={<Protected><Layout /> </Protected>} />
-
-          </Routes>
+        <ToastContextProvider>
+          <UserContextProvider>
 
 
-        </UserContextProvider>
-      </ToastContextProvider>
 
-    </BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Landing />} />
+
+              <Route path="/chat" element={<Protected><Layout /> </Protected>} />
+
+            </Routes>
+
+
+          </UserContextProvider>
+        </ToastContextProvider>
+
+      </BrowserRouter>
 
   );
 }
