@@ -1,5 +1,5 @@
 .layout {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     overflow: hidden;
     /* background: linear-gradient(to right, #202021, #373737); */
@@ -7,17 +7,19 @@
 
 .chat-left {
     position: relative;
-    padding: 1vh;
+    padding: 1rem;
     background: linear-gradient(to right, #202021, #373737);
     display: flex;
     flex-direction: column;
     transition: .5s;
-
+    width: 20vw;
+    min-height: 100%;
 }
 
 .chat-right {
     background-color: #333333;
-    width: 100%;
+    min-height: 100%;
+    width: 80vw;
 }
 
 .enableBlur>* {
@@ -27,4 +29,13 @@
 
 .disableBlur {
     filter: blur(0);
+}
+
+@media only screen and (width<500px) {
+
+    .chat-left,
+    .chat-right {
+        width: 100%;
+    }
+
 }
