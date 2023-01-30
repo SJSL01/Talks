@@ -1,11 +1,13 @@
 .chat-container {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 100vh;
     color: white;
 }
 
 .chat-top {
+    background-color: rgb(108, 108, 108);
+    width: 100%;
     padding: 1vh;
     display: flex;
     justify-content: center;
@@ -32,10 +34,10 @@
 
 
 .text-area {
+    box-sizing: border-box;
     overflow-x: hidden;
+    overflow-y: scroll;
     color: black;
-    flex: 2;
-    width: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -52,33 +54,17 @@
 
 .my {
     max-width: 50%;
-    width: fit-content;
+    word-wrap: break-word;
     align-self: flex-end;
-    background-color: rgba(88, 88, 88, 0.753);
+    background: linear-gradient(to top, rgb(63, 63, 63), rgb(51, 51, 51));
 }
 
 .other {
     max-width: 50%;
+    overflow-wrap: break-word;
     width: fit-content;
-    background-color: rgba(88, 88, 88, 0.753);
+    background: linear-gradient(to bottom, rgb(63, 63, 63), rgb(37, 37, 37));
     align-items: flex-start;
-}
-
-
-.my div {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    width: fit-content;
-
-
-}
-
-.other div {
-
-    display: flex;
-    flex-direction: row;
-    width: fit-content;
 }
 
 
@@ -110,4 +96,23 @@
 
 .send textarea::-webkit-scrollbar {
     display: none;
+}
+
+@media only screen and (screen<500px) {
+    .text {
+        font-size: 3vw;
+    }
+
+    .chat-top {
+        font-size: 5vw;
+    }
+}
+@media only screen and (screen<300px) {
+    .text {
+        font-size: 2vw;
+    }
+
+    .chat-top {
+        font-size: 5vw;
+    }
 }

@@ -55,6 +55,20 @@ export const UserContextProvider = ({ children }) => {
         }
     }
 
+    // debounce search
+    useEffect(() => {
+
+        if (search != "") {
+
+            let timer = setTimeout(() => {
+                searchUser()
+            }, 1000)
+
+            return () => clearInterval(timer)
+        }
+
+    }, [search])
+
 
     const searchUser = async () => {
         setSearchedUser(null)
@@ -134,7 +148,6 @@ export const UserContextProvider = ({ children }) => {
             const roomId = selectedUser?.uid > user?.uid ? selectedUser?.uid + user?.uid : user?.uid + selectedUser?.uid
             // //console.log(roomId);
             const unSub = onSnapshot(doc(db, "chat", roomId), (doc) => {
-                // //console.log(doc.data().messages);
                 doc.exists() && setMessages(doc.data().messages)
             })
 

@@ -39,7 +39,6 @@ export default function Leftnav() {
                     type="text" placeholder='Search a User'
                     value={search === null ? "" : search}
                     className="input"
-                    onKeyDown={(e) => { e.code === "Enter" && searchUser() }}
                     onChange={(e) => {
                         if (searchedUser) setSearchedUser(null)
                         setSearch(e.target.value)

@@ -21,13 +21,12 @@ export default function Chat() {
     const { user, selectedUser, messages, setMessages, setSelectedUser } = useContext(UserContext)
 
     useEffect(() => {
-        setMessages([])
-        //console.log(selectedUser?.username);
+        // setMessages([])
     }, [selectedUser])
 
     useEffect(() => {
         view.current?.scrollIntoView({ behavior: "smooth" });
-    }, [messages, media])
+    }, [media, messages])
 
     const cloud = useRef()
     const widgetRef = useRef()
@@ -150,13 +149,13 @@ export default function Chat() {
                     {messages.map(message => {
                         return (
                             <div className={message.receiverId !== user.uid ? "my disableBlur" : "disableBlur other"} >
-                                <div>
+                                <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
                                     <img src={message.senderId === user.uid ? user.photoURL : selectedUser.photoURL}
                                         style={{ height: "5vh", width: "5vh", borderRadius: "50%" }} alt="" />
                                     <small style={{ fontSize: "1.5vh" }}>{message.senderId === user.uid ? "ME" : selectedUser.username}</small>
                                 </div>
 
-                                <div style={{ width: "30vw" }}>
+                                <div>
                                     {message.img && <img style={{ width: "100%" }} src={message.img} alt="" />}
                                 </div>
 
@@ -174,7 +173,8 @@ export default function Chat() {
                         <div ref={view} className="my disableBlur">
                             <img src={media} alt="" />
                         </div>}
-                    <div ref={view}></div>
+                    <div ref={view}>
+                    </div>
                 </div>
 
 
