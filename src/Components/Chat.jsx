@@ -73,35 +73,7 @@ export default function Chat() {
 
         if (media) {
             console.log(media);
-            // const storageRef = ref(storage, uuidv4());
 
-            // const uploadTask = uploadBytesResumable(storageRef, media);
-
-            // //console.log(media);
-            // //console.log(uploadTask);
-            // uploadTask.on(
-            //     'state_changed',
-            //     (snapshot) => {
-            //         // Observe state change events such as progress, pause, and resume
-            //         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-            //         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            //         setUploading(progress).toFixed(0)
-            //         console.log('Upload is ' + progress + '% done');
-            //         switch (snapshot.state) {
-            //             case 'paused':
-            //                 console.log('Upload is paused');
-            //                 break;
-            //             case 'running':
-            //                 console.log('Upload is running');
-            //                 break;
-            //         }
-            //     },
-            //     (error) => {
-            //         console.log(error);
-            //     },
-            //     () => {
-            //         getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            //             //console.log(downloadURL);
             await updateDoc(doc(db, "chat", roomId), {
                 messages: arrayUnion({
                     text,
@@ -111,9 +83,6 @@ export default function Chat() {
                     img: media,
                 }),
             });
-            // });
-            // }
-            // );
 
 
         } else {
@@ -154,21 +123,28 @@ export default function Chat() {
                     {messages.map(message => {
                         return (
                             <div className={message.receiverId !== user.uid ? "my disableBlur" : "disableBlur other"} >
-                                <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-                                    <img src={message.senderId === user.uid ? user.photoURL : selectedUser.photoURL}
-                                        style={{ height: "5vh", width: "5vh", borderRadius: "50%" }} alt="" />
-                                    <small style={{ fontSize: "1.5vh" }}>{message.senderId === user.uid ? "ME" : selectedUser.username}</small>
-                                </div>
 
                                 <div>
-                                    {message.img && <img style={{ width: "100%" }} src={message.img} alt="" />}
-                                </div>
 
-                                <div className="text" >
-                                    {message.text}
+                                    <div>
+                                        {message.img && <img style={{ width: "100%" }} src={message.img} alt="" />}
+                                    </div>
+
+                                    <div className="text" >
+                                        {message.text}
+                                    </div>
+                                    <div>
+                                        <small style={{ fontSize: ".9vh" }}>{format(message.date)}</small>
+                                    </div>
+
                                 </div>
                                 <div>
-                                    <small style={{ fontSize: ".9vh" }}>{format(message.date)}</small>
+
+                                    <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-end" }}>
+                                        <img src={message.senderId === user.uid ? user.photoURL : selectedUser.photoURL}
+                                            style={{ height: "5vh", width: "5vh", borderRadius: "50%" }} alt="" />
+                                        <small style={{ fontSize: "1.5vh" }}>{message.senderId === user.uid ? "ME" : selectedUser.username}</small>
+                                    </div>
                                 </div>
                             </div>
                         )

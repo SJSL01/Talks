@@ -38,7 +38,6 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    width: fit-content;
     padding: 5vh;
     height: 70vh;
     border-radius: 30px;
@@ -61,8 +60,8 @@ form div {
     font-weight: bold;
     font-size: 2vh;
     background-color: transparent;
-    height: 5vh;
-    width: 15vw;
+    height: 3vw;
+    width: 100%;
     padding: 0 2vh;
     border-radius: 20px;
     margin: 2vh;
@@ -77,7 +76,7 @@ form div {
     transition: 0.5s;
 }
 
-button {
+.button {
     font-size: 2vh;
     height: 5vh;
     width: fit-content;
@@ -87,7 +86,7 @@ button {
     transition: 0.5s;
 }
 
-button:hover {
+.button:hover {
     background-color: rgb(213, 213, 213);
     transition: 0.5s;
     scale: 1.1;
@@ -157,12 +156,30 @@ small {
 }
 
 @media only screen and (width<900px) {
+
+    .input {
+        height: 5vw;
+    }
+}
+
+@media only screen and (width<500px) {
+    .input {
+        height: 6vw;
+        font-size: 2.5vw;
+    }
+
     .left {
         display: none;
     }
 
     .card {
-        width: 60%;
+        height: 100vw;
+        min-height: 50vw;
+        width: 50vw;
+    }
+
+    small {
+        font-size: 2vw;
     }
 }
 
@@ -176,15 +193,16 @@ small {
 
     0% {
         border: 5px solid #A8BDFE;
-      
+
     }
 
     50% {
         border: 5px solid #a8bdfe00;
-    
+
     }
+
     100% {
         border: 5px solid #a8bdfe;
- 
+
     }
 }
