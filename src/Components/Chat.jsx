@@ -15,10 +15,13 @@ export default function Chat() {
     const [text, setText] = useState("")
     const [media, setMedia] = useState(null)
     const view = useRef()
+    const inp = useRef()
 
     const [uploading, setUploading] = useState(null)
 
     const { user, selectedUser, messages, setMessages, setSelectedUser } = useContext(UserContext)
+
+
 
     useEffect(() => {
         // setMessages([])
@@ -32,6 +35,7 @@ export default function Chat() {
     const widgetRef = useRef()
 
     useEffect(() => {
+
         cloud.current = window.cloudinary
         widgetRef.current = cloud.current.createUploadWidget({
             cloudName: process.env.REACT_APP_CLOUD_NAME,
@@ -59,6 +63,7 @@ export default function Chat() {
 
     const handleSend = async () => {
 
+        inp.current.focus()
 
         if (text === "" && media === null) {
             return
@@ -173,8 +178,7 @@ export default function Chat() {
                         <div ref={view} className="my disableBlur">
                             <img src={media} alt="" />
                         </div>}
-                    <div ref={view}>
-                    </div>
+                    <div ref={view}></div>
                 </div>
 
 
@@ -182,7 +186,7 @@ export default function Chat() {
 
 
                     <div>
-                        <textarea type="text" onKeyDown={(e) => { e.code === "Enter" && handleSend() }} value={text} onChange={(e) => { setText(e.target.value) }} />
+                        <textarea ref={inp} type="text" onKeyDown={(e) => { e.code === "Enter" && handleSend() }} value={text} onChange={(e) => { setText(e.target.value) }} />
                     </div>
 
 
@@ -199,7 +203,9 @@ export default function Chat() {
                         <input accept="image/*" onChange={(e) => setMedia(e.target.files[0])} style={{ display: "none" }}
                             type="file" id="media" /> */}
 
-                        <button style={{ marginR: "0 5vh", backgroundColor: "lightgreen" }} onClick={() => { handleSend() }}>Send✔</button>
+                        <button
+                            style={{ marginR: "0 5vh", backgroundColor: "lightgreen" }}
+                            onClick={() => { handleSend() }}>Send✔</button>
                     </div>
 
 

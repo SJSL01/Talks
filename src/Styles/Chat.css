@@ -5,6 +5,10 @@
     color: white;
 }
 
+.chat-container::-webkit-scrollbar {
+    display: none;
+}
+
 .chat-top {
     background-color: rgb(108, 108, 108);
     width: 100%;
@@ -12,7 +16,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 0;
     box-shadow: 5px 5px 10px rgb(25, 25, 25);
 }
 
@@ -34,37 +37,35 @@
 
 
 .text-area {
-    box-sizing: border-box;
+    height: 100%;
+    padding: 1vh;
     overflow-x: hidden;
     overflow-y: scroll;
-    color: black;
     display: flex;
     flex-direction: column;
 }
 
+.text-area::-webkit-scrollbar {
+    display: none;
+}
+
 .text-area div {
-    display: flex;
-    flex-direction: column;
     color: white;
     font-weight: bold;
     margin: .5vh;
     border-radius: 10px;
-    /* background-color: aqua; */
 }
 
 .my {
     max-width: 50%;
-    word-wrap: break-word;
     align-self: flex-end;
-    background: linear-gradient(to top, rgb(63, 63, 63), rgb(51, 51, 51));
+    background: linear-gradient(to bottom, rgb(63, 63, 63), rgb(37, 37, 37));
 }
 
 .other {
     max-width: 50%;
-    overflow-wrap: break-word;
-    width: fit-content;
     background: linear-gradient(to bottom, rgb(63, 63, 63), rgb(37, 37, 37));
-    align-items: flex-start;
+    align-self: flex-start;
 }
 
 
@@ -98,6 +99,7 @@
     display: none;
 }
 
+
 @media only screen and (screen<500px) {
     .text {
         font-size: 3vw;
@@ -106,7 +108,13 @@
     .chat-top {
         font-size: 5vw;
     }
+
+    .send {
+        position: fixed;
+        bottom: 0;
+    }
 }
+
 @media only screen and (screen<300px) {
     .text {
         font-size: 2vw;

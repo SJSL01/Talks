@@ -58,7 +58,7 @@ export const UserContextProvider = ({ children }) => {
     // debounce search
     useEffect(() => {
 
-        if (search != "") {
+        if (search != "" && search != null) {
 
             let timer = setTimeout(() => {
                 searchUser()
@@ -72,7 +72,7 @@ export const UserContextProvider = ({ children }) => {
 
     const searchUser = async () => {
         setSearchedUser(null)
-        if (search === user.username) {
+        if (search === user.username && search === null) {
             return
         }
         const usersRef = collection(db, "users");
