@@ -10,8 +10,8 @@
 }
 
 .chat-top {
-    /* background-color: rgb(108, 108, 108); */
-    z-index: 2;
+    position: fixed;
+    top: 0;
     width: 100%;
     padding: 1vh;
     display: flex;
@@ -38,12 +38,14 @@
 
 
 .text-area {
-    height: 100%;
+    margin-top: 16vh;
+    height: 75%;
     padding: 1vh;
     overflow-x: hidden;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
+    /* background-color: aqua; */
 }
 
 .text-area::-webkit-scrollbar {
@@ -58,12 +60,14 @@
 }
 
 .my {
+    margin-bottom: 1vh;
     max-width: 50%;
     align-self: flex-end;
     background: linear-gradient(to bottom, rgb(63, 63, 63), rgb(37, 37, 37));
 }
 
 .other {
+    margin-bottom: 1vh;
     max-width: 50%;
     background: linear-gradient(to bottom, rgb(63, 63, 63), rgb(37, 37, 37));
     align-self: flex-start;
@@ -77,6 +81,8 @@
 
 
 .send {
+    position: fixed;
+    bottom: 0;
     box-shadow: 5px 5px 10px rgb(190, 190, 190);
     display: flex;
     align-items: center;

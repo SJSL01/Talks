@@ -28,7 +28,7 @@ export default function Chat() {
     }, [selectedUser])
 
     useEffect(() => {
-        view.current?.scrollIntoView({ behavior: "smooth" });
+        view.current?.scrollIntoView({ behavior: "smooth",block: "end",inline: "end" });
     }, [media, messages])
 
     const cloud = useRef()
