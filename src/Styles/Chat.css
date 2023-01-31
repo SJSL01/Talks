@@ -48,7 +48,7 @@
     /* background-color: aqua; */
 }
 
-.text-area::-webkit-scrollbar {
+*::-webkit-scrollbar {
     display: none;
 }
 
@@ -62,15 +62,18 @@
 .my {
     margin-bottom: 1vh;
     max-width: 50%;
-    align-self: flex-end;
+    float: right;
+    width: fit-content;
+    clear: both;
     background: linear-gradient(to bottom, rgb(63, 63, 63), rgb(37, 37, 37));
 }
 
 .other {
-    margin-bottom: 1vh;
     max-width: 50%;
+    float: left;
+    margin-bottom: 1vh;
+    clear: both;
     background: linear-gradient(to bottom, rgb(63, 63, 63), rgb(37, 37, 37));
-    align-self: flex-start;
 }
 
 

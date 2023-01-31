@@ -1,5 +1,4 @@
 
-import { Button } from "@mui/material"
 import { arrayUnion, doc, Timestamp, updateDoc } from "firebase/firestore"
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
 import { useContext, useEffect, useRef, useState } from "react"
@@ -114,43 +113,44 @@ export default function Chat() {
                     </div>
 
                 </div>
-                <ScrollToBottom className="text-area disableBlur">
-                        {messages.map(message => {
-                            return (
-                                <div className={message.receiverId !== user.uid ? "my disableBlur" : "disableBlur other"} >
+                <ScrollToBottom className="text-area">
+                    {messages.map(message => {
+                        return (
+
+                            <div className={message.receiverId !== user.uid ? "my disableBlur" : "disableBlur other"} >
+
+                                <div>
 
                                     <div>
+                                        {message.img && <img style={{ width: "100%" }} src={message.img} alt="" />}
+                                    </div>
 
-                                        <div>
-                                            {message.img && <img style={{ width: "100%" }} src={message.img} alt="" />}
-                                        </div>
-
-                                        <div className="text" >
-                                            {message.text}
-                                        </div>
-                                        <div>
-                                            <small style={{ fontSize: ".9vh" }}>{format(message.date)}</small>
-                                        </div>
-
+                                    <div className="text" >
+                                        {message.text}
                                     </div>
                                     <div>
-
-                                        <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-end" }}>
-                                            <img src={message.senderId === user.uid ? user.photoURL : selectedUser.photoURL}
-                                                style={{ height: "5vh", width: "5vh", borderRadius: "50%" }} alt="" />
-                                            <small style={{ fontSize: "1.5vh" }}>{message.senderId === user.uid ? "ME" : selectedUser.username}</small>
-                                        </div>
+                                        <small style={{ fontSize: ".9vh" }}>{format(message.date)}</small>
                                     </div>
-                                    <div ref={view}></div>
+
                                 </div>
-                            )
-                        })}
-                        {uploading && <div className="disableBlur">{uploading}</div>}
-                        {media &&
-                            <div ref={view} className="my disableBlur">
-                                <img style={{ width: "100%" }} src={media} alt="" />
-                                <small>{text ? text : "Press SEND to send the media"}</small>
-                            </div>}
+                                <div>
+
+                                    <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-end" }}>
+                                        <img src={message.senderId === user.uid ? user.photoURL : selectedUser.photoURL}
+                                            style={{ height: "5vh", width: "5vh", borderRadius: "50%" }} alt="" />
+                                        <small style={{ fontSize: "1.5vh" }}>{message.senderId === user.uid ? "ME" : selectedUser.username}</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                        )
+                    })}
+                    {uploading && <div className="disableBlur">{uploading}</div>}
+                    {media &&
+                        <div ref={view} className="my disableBlur">
+                            <img style={{ width: "100%" }} src={media} alt="" />
+                            <small>{text ? text : "Press SEND to send the media"}</small>
+                        </div>}
                 </ScrollToBottom>
 
 
@@ -165,7 +165,7 @@ export default function Chat() {
                     <div>
                         <span onClick={() => { widgetRef.current.open() }}>📎</span>
 
-                       <button onClick={() => { handleSend() }}>Send✔</button>
+                        <button onClick={() => { handleSend() }}>Send✔</button>
                     </div>
 
 
