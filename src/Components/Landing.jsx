@@ -150,8 +150,8 @@ export default function Landing() {
                 </div>
                 <div className="right">
 
-                    <h1>{signUp ? "SIGNUP" : "LOGIN"}</h1>
                     <div className={loading ? "card loading" : "card"}>
+                        <h1>{signUp ? "SIGNUP" : "LOGIN"}</h1>
 
                         <form style={{ position: "relative" }} className={signUp ? "hide" : "show"}>
                             <div>

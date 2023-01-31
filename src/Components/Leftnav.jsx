@@ -35,16 +35,25 @@ export default function Leftnav() {
                     {user?.username}
                 </div>
 
+
+            </div >
+
+            <div className='search-container'>
+
                 <input style={{ margin: "0" }}
                     type="text" placeholder='Search a User'
                     value={search === null ? "" : search}
-                    className="input"
+                    className="search"
                     onChange={(e) => {
                         if (searchedUser) setSearchedUser(null)
                         setSearch(e.target.value)
                     }} />
 
-            </div >
+                    <span>
+                        🔍
+                    </span>
+
+            </div>
 
             <div className={userOptions ? "options disableBlur" : "disableOptions"}>
                 <div>
@@ -52,7 +61,7 @@ export default function Leftnav() {
                 </div>
                 <div>
 
-                    
+
 
                     <Button variant="contained" color="error"
                         onClick={() => {

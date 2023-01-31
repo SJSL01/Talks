@@ -40,17 +40,8 @@ export default function Chat() {
         widgetRef.current = cloud.current.createUploadWidget({
             cloudName: process.env.REACT_APP_CLOUD_NAME,
             uploadPreset: "gyogibwu",
-            cropping: true, //add a cropping step
-            // showAdvancedOptions: true, //add advanced options (public_id and tag)
-            sources: ["local", "camera"], // restrict the upload sources to URL and local files
-            // multiple: false,  //restrict upload to a single file
-            folder: user.displayName, //upload files to the specified folder
-            // tags: ["users", "profile"], //add the given tags to the uploaded files
-            // context: {alt: "user_uploaded"}, //add the given context data to the uploaded files
-            // clientAllowedFormats: ["images"], //restrict uploading to image files only
-            // maxImageFileSize: 2000000 //restrict file size to less than 2MB
-            // maxImageWidth: 2000, //Scales the image down to a width of 2000 pixels before uploading
-            theme: "purple" //change to a purple theme
+            sources: ["local", "camera"], 
+            folder: user.displayName, 
         }, (err, res) => {
             if (res.info.secure_url != undefined) {
                 setMedia(res.info.secure_url)
@@ -63,7 +54,12 @@ export default function Chat() {
 
     const handleSend = async () => {
 
-        inp.current.focus()
+
+        if(inp.current.focus()){
+
+            inp.current.focus()
+        }
+
 
         if (text === "" && media === null) {
             return
@@ -109,7 +105,7 @@ export default function Chat() {
             {selectedUser ? <>
                 <div className="chat-top">
                     <div onClick={() => { setSelectedUser(null) }}>
-                        ⬅
+                        BACK
                     </div>
                     <div>
                         {selectedUser && <h3>{selectedUser?.username}</h3>}
@@ -152,7 +148,8 @@ export default function Chat() {
                     {uploading && <div className="disableBlur">{uploading}</div>}
                     {media &&
                         <div ref={view} className="my disableBlur">
-                            <img src={media} alt="" />
+                            <img style={{ width: "100%" }} src={media} alt="" />
+                            <small>{text ? text : "Press SEND to send the media"}</small>
                         </div>}
                     <div ref={view}></div>
                 </div>
@@ -169,18 +166,7 @@ export default function Chat() {
                     <div>
                         <span onClick={() => { widgetRef.current.open() }}>📎</span>
 
-
-                        {/* <label htmlFor="media">
-
-                            <span>📎</span>
-
-                        </label>
-
-                        <input accept="image/*" onChange={(e) => setMedia(e.target.files[0])} style={{ display: "none" }}
-                            type="file" id="media" /> */}
-
                         <button
-                            style={{ marginR: "0 5vh", backgroundColor: "lightgreen" }}
                             onClick={() => { handleSend() }}>Send✔</button>
                     </div>
 

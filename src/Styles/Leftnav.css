@@ -54,6 +54,27 @@
     display: none;
 }
 
+.search-container {
+    margin: 0 3vw;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2vh;
+    border-bottom: 1px solid white;
+}
+
+.search {
+    color: white;
+    font-weight: bold;
+    width: 80%;
+    font-size: 3vw;
+    background-color: transparent;
+    border: 0;
+}
+
+.search:focus() {
+    border: 0;
+}
+
 
 @keyframes grow {
     0% {

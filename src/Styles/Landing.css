@@ -1,5 +1,6 @@
 .landing-container {
     height: 100vh;
+    height: --webkit-fill-avaiable;
     display: flex;
     align-items: center;
     -ms-user-select: none;
@@ -165,7 +166,13 @@ small {
 @media only screen and (width<500px) {
     .input {
         height: 6vw;
-        font-size: 2.5vw;
+        width: 100%;
+        font-size: 3vw;
+    }
+
+    .right{
+        justify-content: center;
+
     }
 
     .left {
@@ -173,9 +180,9 @@ small {
     }
 
     .card {
-        height: 100vw;
+        height: fit-content;
         min-height: 50vw;
-        width: 50vw;
+        width: 60vw;
     }
 
     small {
