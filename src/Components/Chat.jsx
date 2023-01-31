@@ -28,7 +28,7 @@ export default function Chat() {
     }, [selectedUser])
 
     useEffect(() => {
-        view.current?.scrollIntoView({ behavior: "smooth",block: "end",inline: "end" });
+        view.current?.scrollIntoView({ behavior: "smooth", block: "end", inline: "end" });
     }, [media, messages])
 
     const cloud = useRef()
@@ -40,8 +40,8 @@ export default function Chat() {
         widgetRef.current = cloud.current.createUploadWidget({
             cloudName: process.env.REACT_APP_CLOUD_NAME,
             uploadPreset: "gyogibwu",
-            sources: ["local", "camera"], 
-            folder: user.displayName, 
+            sources: ["local", "camera"],
+            folder: user.displayName,
         }, (err, res) => {
             if (res.info.secure_url != undefined) {
                 setMedia(res.info.secure_url)
@@ -137,6 +137,7 @@ export default function Chat() {
                                         <small style={{ fontSize: "1.5vh" }}>{message.senderId === user.uid ? "ME" : selectedUser.username}</small>
                                     </div>
                                 </div>
+                                <div ref={view}></div>
                             </div>
                         )
                     })}
@@ -146,7 +147,6 @@ export default function Chat() {
                             <img style={{ width: "100%" }} src={media} alt="" />
                             <small>{text ? text : "Press SEND to send the media"}</small>
                         </div>}
-                    <div ref={view}></div>
                 </div>
 
 
