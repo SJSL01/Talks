@@ -7,13 +7,13 @@ import UserContext from "../Context/UserContext"
 import { db, storage } from "../firebase"
 import "../Styles/Chat.css"
 import { format } from "timeago.js"
-import ScrollToBottom, { useScrollToBottom, useSticky } from 'react-scroll-to-bottom';
+import ScrollToBottom, { useScrollToBottom } from 'react-scroll-to-bottom';
 import { uuidv4 } from "@firebase/util"
 
 export default function Chat() {
 
     const scrollToBottom = useScrollToBottom();
-    const [sticky] = useSticky();
+
 
 
     const [text, setText] = useState("")
@@ -165,7 +165,7 @@ export default function Chat() {
                     <div>
                         <span onClick={() => { widgetRef.current.open() }}>📎</span>
 
-                        {!sticky && <button onClick={() => { handleSend() }}>Send✔</button>}
+                       <button onClick={() => { handleSend() }}>Send✔</button>
                     </div>
 
 
