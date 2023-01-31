@@ -7,10 +7,14 @@ import UserContext from "../Context/UserContext"
 import { db, storage } from "../firebase"
 import "../Styles/Chat.css"
 import { format } from "timeago.js"
-
+import ScrollToBottom, { useScrollToBottom, useSticky } from 'react-scroll-to-bottom';
 import { uuidv4 } from "@firebase/util"
 
 export default function Chat() {
+
+    const scrollToBottom = useScrollToBottom();
+    const [sticky] = useSticky();
+
 
     const [text, setText] = useState("")
     const [media, setMedia] = useState(null)
@@ -28,7 +32,7 @@ export default function Chat() {
     }, [selectedUser])
 
     useEffect(() => {
-        view.current?.scrollIntoView({ behavior: "smooth", block: "end", inline: "end" });
+        // view.current?.scrollIntoView({ behavior: "smooth", block: "end", inline: "end" });
     }, [media, messages])
 
     const cloud = useRef()
@@ -53,8 +57,7 @@ export default function Chat() {
 
 
     const handleSend = async () => {
-
-        inp.current.focus()
+        // inp.current.focus()
 
         if (text === "" && media === null) {
             return
@@ -91,6 +94,7 @@ export default function Chat() {
         setUploading(null)
         setMedia(null)
         setText("")
+        scrollToBottom()
     }
 
     //console.log(messages);
@@ -110,44 +114,44 @@ export default function Chat() {
                     </div>
 
                 </div>
-                <div className="text-area enableBlur">
-                    {messages.map(message => {
-                        return (
-                            <div className={message.receiverId !== user.uid ? "my disableBlur" : "disableBlur other"} >
-
-                                <div>
+                <ScrollToBottom className="text-area disableBlur">
+                        {messages.map(message => {
+                            return (
+                                <div className={message.receiverId !== user.uid ? "my disableBlur" : "disableBlur other"} >
 
                                     <div>
-                                        {message.img && <img style={{ width: "100%" }} src={message.img} alt="" />}
-                                    </div>
 
-                                    <div className="text" >
-                                        {message.text}
+                                        <div>
+                                            {message.img && <img style={{ width: "100%" }} src={message.img} alt="" />}
+                                        </div>
+
+                                        <div className="text" >
+                                            {message.text}
+                                        </div>
+                                        <div>
+                                            <small style={{ fontSize: ".9vh" }}>{format(message.date)}</small>
+                                        </div>
+
                                     </div>
                                     <div>
-                                        <small style={{ fontSize: ".9vh" }}>{format(message.date)}</small>
-                                    </div>
 
-                                </div>
-                                <div>
-
-                                    <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-end" }}>
-                                        <img src={message.senderId === user.uid ? user.photoURL : selectedUser.photoURL}
-                                            style={{ height: "5vh", width: "5vh", borderRadius: "50%" }} alt="" />
-                                        <small style={{ fontSize: "1.5vh" }}>{message.senderId === user.uid ? "ME" : selectedUser.username}</small>
+                                        <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-end" }}>
+                                            <img src={message.senderId === user.uid ? user.photoURL : selectedUser.photoURL}
+                                                style={{ height: "5vh", width: "5vh", borderRadius: "50%" }} alt="" />
+                                            <small style={{ fontSize: "1.5vh" }}>{message.senderId === user.uid ? "ME" : selectedUser.username}</small>
+                                        </div>
                                     </div>
+                                    <div ref={view}></div>
                                 </div>
-                                <div ref={view}></div>
-                            </div>
-                        )
-                    })}
-                    {uploading && <div className="disableBlur">{uploading}</div>}
-                    {media &&
-                        <div ref={view} className="my disableBlur">
-                            <img style={{ width: "100%" }} src={media} alt="" />
-                            <small>{text ? text : "Press SEND to send the media"}</small>
-                        </div>}
-                </div>
+                            )
+                        })}
+                        {uploading && <div className="disableBlur">{uploading}</div>}
+                        {media &&
+                            <div ref={view} className="my disableBlur">
+                                <img style={{ width: "100%" }} src={media} alt="" />
+                                <small>{text ? text : "Press SEND to send the media"}</small>
+                            </div>}
+                </ScrollToBottom>
 
 
                 <div className="send">
@@ -161,8 +165,7 @@ export default function Chat() {
                     <div>
                         <span onClick={() => { widgetRef.current.open() }}>📎</span>
 
-                        <button
-                            onClick={() => { handleSend() }}>Send✔</button>
+                        {!sticky && <button onClick={() => { handleSend() }}>Send✔</button>}
                     </div>
 
 
