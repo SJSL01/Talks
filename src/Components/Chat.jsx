@@ -55,11 +55,6 @@ export default function Chat() {
     const handleSend = async () => {
 
 
-        if(inp.current.focus()){
-
-            inp.current.focus()
-        }
-
 
         if (text === "" && media === null) {
             return
