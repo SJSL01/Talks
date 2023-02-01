@@ -7,22 +7,25 @@ import { useEffect, useState } from 'react'
 import { useContext } from 'react'
 import UserContext from '../Context/UserContext'
 import { auth } from '../firebase'
+import { useNavigate } from 'react-router-dom'
 
 export default function Layout() {
 
+    const navigate = useNavigate()
 
-    const { user, checkUser, userOptions, selectedUser } = useContext(UserContext)
+
+    const { user, checkUser, userOptions, selectedUser, setSelectedUser } = useContext(UserContext)
 
     const [mobile, setMobile] = useState(false)
 
     useEffect(() => {
+        setSelectedUser(null)
         checkUser()
         if (window.innerWidth < 500) {
             setMobile(true)
         }
     }, [])
 
-    //console.log(userOptions);
 
     return (
         <>
@@ -35,9 +38,8 @@ export default function Layout() {
                                 <AllUsers />
                             </div>
                                 :
-                                <div className="chat-right">
-                                    <Chat />
-                                </div>}
+                                navigate("/chat")
+                                }
                         </>
                         :
                         <>
@@ -45,7 +47,7 @@ export default function Layout() {
                                 <Leftnav />
                                 <AllUsers />
                             </div>
-                            
+
                             <div className="chat-right">
                                 <Chat />
                             </div>

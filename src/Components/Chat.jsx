@@ -7,12 +7,15 @@ import { db, storage } from "../firebase"
 import "../Styles/Chat.css"
 import { format } from "timeago.js"
 import ScrollToBottom, { useScrollToBottom } from 'react-scroll-to-bottom';
-import { uuidv4 } from "@firebase/util"
+import { useNavigate } from "react-router-dom"
 
 export default function Chat() {
 
+
     const scrollToBottom = useScrollToBottom();
 
+
+    const navigate = useNavigate()
 
 
     const [text, setText] = useState("")
@@ -26,9 +29,7 @@ export default function Chat() {
 
 
 
-    useEffect(() => {
-        // setMessages([])
-    }, [selectedUser])
+
 
     useEffect(() => {
         // view.current?.scrollIntoView({ behavior: "smooth", block: "end", inline: "end" });
@@ -38,6 +39,8 @@ export default function Chat() {
     const widgetRef = useRef()
 
     useEffect(() => {
+
+        if (user === null) navigate("/")
 
         cloud.current = window.cloudinary
         widgetRef.current = cloud.current.createUploadWidget({
@@ -102,7 +105,10 @@ export default function Chat() {
         <div className="chat-container">
             {selectedUser ? <>
                 <div className="chat-top">
-                    <div onClick={() => { setSelectedUser(null) }}>
+                    <div onClick={() => {
+                        setSelectedUser(null)
+                        navigate("/home")
+                    }}>
                         BACK
                     </div>
                     <div>

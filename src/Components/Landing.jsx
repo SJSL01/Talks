@@ -9,6 +9,7 @@ import "../Styles/Landing.css"
 import ToastContext from "../Context/ToastContext";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
+import BG from "./BG"
 
 
 export default function Landing() {
@@ -255,10 +256,10 @@ export default function Landing() {
 
                 </div>
 
-
+                <BG />
             </div >
                 :
-                navigate("/chat", { replace: true })
+                navigate("/home", { replace: true })
             }
         </>
     )
