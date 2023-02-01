@@ -31,7 +31,7 @@ function App() {
 
 
           <Routes>
-            <Route path="https://talks-tday.onrender.com" element={<Landing />} />
+            <Route path="/" element={<Landing />} />
 
             <Route path="/home" element={<Protected><Layout /> </Protected>} />
 
