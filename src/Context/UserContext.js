@@ -10,7 +10,6 @@ const UserContext = createContext();
 
 export const UserContextProvider = ({ children }) => {
 
-
     const { toast } = useContext(ToastContext)
 
     const [user, setUser] = useState(null)

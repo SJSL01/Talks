@@ -1,15 +1,23 @@
-.myChats-Container {
-    margin-top: 2vh;
+.heading {
+    color: white;
+    font-size: 8vh;
 }
 
+.all-chats{
+    overflow-y: scroll;
+    height: 50vh;
+    margin: -1vh;
+}
+
+
 .myChats-Container div {
-    margin: 2vh 0;
+    margin: 2vh;
 }
 
 .myChats {
     color: white;
     font-weight: bold;
-    background: #2e2e2f63;
+    background: #70707034;
     cursor: pointer;
     display: flex;
     align-items: center;

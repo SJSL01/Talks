@@ -40,7 +40,7 @@
     padding: 5vh;
     height: 70vh;
     border-radius: 30px;
-    background: linear-gradient(45deg, rgba(0, 0, 0, 0.721), rgba(54, 54, 54, 0.595));
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.507), rgba(54, 54, 54, 0.189));
     /* box-shadow: 15px 15px 10px rgb(25, 25, 25),
         -15px -15px 10px rgb(60, 60, 60); */
 }

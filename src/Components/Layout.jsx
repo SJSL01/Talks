@@ -9,6 +9,7 @@ import UserContext from '../Context/UserContext'
 import { auth } from '../firebase'
 import { useNavigate } from 'react-router-dom'
 
+import BG from "./BG"
 export default function Layout() {
 
     const navigate = useNavigate()
@@ -39,7 +40,7 @@ export default function Layout() {
                             </div>
                                 :
                                 navigate("/chat")
-                                }
+                            }
                         </>
                         :
                         <>
@@ -53,11 +54,12 @@ export default function Layout() {
                             </div>
                         </>
                     }
+                    <BG />
                 </div>
                 :
-
                 <h1 className={user?.uid != auth.currentUser?.uid ? "show" : "hide"}>
                     LOADING
+                    <BG />
                 </h1>}
         </>
     )

@@ -3,7 +3,6 @@
     flex-direction: column;
     height: 100vh;
     color: white;
-    background: linear-gradient(to bottom, rgb(63, 63, 63),black);
 }
 
 .chat-container::-webkit-scrollbar {
@@ -11,14 +10,16 @@
 }
 
 .chat-top {
+    margin-top: 2vh;
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 97%;
     padding: 1vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 5px 5px 10px rgb(25, 25, 25);
+    border-radius: 50px;
+    box-shadow: 5px 5px 10px rgba(25, 25, 25, 0.728);
 }
 
 .chat-top div {
@@ -40,13 +41,12 @@
 
 .text-area {
     margin-top: 16vh;
-    height: 70%;
+    height: 78%;
     padding: 1vh;
     overflow-x: hidden;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
-    /* background-color: aqua; */
 }
 
 *::-webkit-scrollbar {
@@ -66,7 +66,7 @@
     float: right;
     width: fit-content;
     clear: both;
-    background: linear-gradient(to bottom, rgb(63, 63, 63), rgb(37, 37, 37));
+    background: linear-gradient(to bottom, rgba(36, 36, 36, 0.402), rgba(0, 0, 0, 0.137));
 }
 
 .other {
@@ -74,7 +74,7 @@
     float: left;
     margin-bottom: 1vh;
     clear: both;
-    background: linear-gradient(to bottom, rgb(63, 63, 63), rgb(37, 37, 37));
+    background: linear-gradient(to bottom, rgba(36, 36, 36, 0.402), rgba(0, 0, 0, 0.137));
 }
 
 
@@ -85,25 +85,29 @@
 
 
 .send {
-    position: fixed;
-    bottom: 0;
-    box-shadow: 5px 5px 10px rgb(190, 190, 190);
+    margin-bottom: 2vh;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px rgb(0, 0, 0);
     display: flex;
     align-items: center;
-    /* justify-content: flex-end; */
+    justify-content: space-evenly;
     width: 100%;
-    /* gap: 6vh; */
 }
 
-.send div:first-child {
-    /* width: 60%; */
-}
 
 .send textarea {
     border: 0;
-    border-radius: 10px;
+    border-radius: 20px;
     resize: none;
-    /* width: 100%; */
+    width: 50vw;
+    font-size: 2.5vh;
+}
+
+.send div button {
+    padding: 1vh;
+    border: 0;
+    mix-blend-mode: color-burn;
+    border-radius: 20px;
 }
 
 .send textarea::-webkit-scrollbar {
@@ -112,18 +116,21 @@
 
 
 @media only screen and (screen<500px) {
+
+    .my,
+    .other {
+        font-size: 8vw;
+    }
+
     .text {
-        font-size: 3vw;
+        font-size: 6vw;
     }
 
     .chat-top {
         font-size: 5vw;
     }
 
-    .send {
-        position: fixed;
-        bottom: 0;
-    }
+
 }
 
 @media only screen and (screen<300px) {

@@ -12,7 +12,7 @@ export default function Leftnav() {
 
     const { user, setUser, search,
         setSearch, searchUser,
-        searchedUser, setSearchedUser,setSelectedUser,
+        searchedUser, setSearchedUser, setSelectedUser,
         userOptions, setUserOptions } = useContext(UserContext)
 
     const navigate = useNavigate();
@@ -37,6 +37,8 @@ export default function Leftnav() {
 
             </div >
 
+
+
             <div className='search-container'>
 
                 <input style={{ margin: "0" }}
@@ -49,7 +51,7 @@ export default function Leftnav() {
                     }} />
 
                 <span>
-                    🔍
+                    
                 </span>
 
             </div>
@@ -73,11 +75,11 @@ export default function Leftnav() {
                         }}>SIGNOUT</Button>
                 </div>
                 <div>
-
                     <Button variant="contained" color="error"
                         onClick={() => { auth.currentUser.delete() }}>DELETE</Button>
 
                 </div>
+
             </div>
         </>
     )

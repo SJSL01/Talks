@@ -25,9 +25,9 @@ export default function MyChats() {
 
 
     return (
-
-
         <div className='myChats-Container'>
+            <div className='heading'>TALKS</div>
+
             {searchedUser &&
                 <>
                     <h3 style={{ textAlign: "center", color: "white" }}>Searched User</h3>
@@ -45,12 +45,12 @@ export default function MyChats() {
 
             {searchedUser && <hr />}
 
-            <div>
-                <h3 style={{ textAlign: "center", color: "white" }}>My Chats</h3>
+            <h3 style={{ textAlign: "center", color: "white" }}>My Chats</h3>
+            <div className='all-chats'>
                 {Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date).map((chat) => {
                     return (
                         <div
-                            style={selectedUser?.uid == chat[1].userInfo.uid ? { backgroundColor: "gray" } : {}}
+                            style={selectedUser?.uid == chat[1].userInfo.uid ? { backgroundColor: "rgba(255, 255, 255, 0.432)" } : {}}
                             className='myChats' onClick={() => {
                                 setSelectedUser(chat[1].userInfo)
                             }}>

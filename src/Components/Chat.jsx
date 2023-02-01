@@ -8,6 +8,9 @@ import "../Styles/Chat.css"
 import { format } from "timeago.js"
 import ScrollToBottom, { useScrollToBottom } from 'react-scroll-to-bottom';
 import { useNavigate } from "react-router-dom"
+import BG from "./BG"
+import send from "../Assests/send.png"
+import attach from "../Assests/attach.png"
 
 export default function Chat() {
 
@@ -27,10 +30,6 @@ export default function Chat() {
 
     const { user, selectedUser, messages, setMessages, setSelectedUser } = useContext(UserContext)
 
-
-
-
-
     useEffect(() => {
         // view.current?.scrollIntoView({ behavior: "smooth", block: "end", inline: "end" });
     }, [media, messages])
@@ -47,7 +46,7 @@ export default function Chat() {
             cloudName: process.env.REACT_APP_CLOUD_NAME,
             uploadPreset: "gyogibwu",
             sources: ["local", "camera"],
-            folder: user.displayName,
+            folder: user?.displayName,
         }, (err, res) => {
             if (res.info.secure_url != undefined) {
                 setMedia(res.info.secure_url)
@@ -162,16 +161,24 @@ export default function Chat() {
 
                 <div className="send">
 
-
                     <div>
-                        <textarea ref={inp} type="text" onKeyDown={(e) => { e.code === "Enter" && handleSend() }} value={text} onChange={(e) => { setText(e.target.value) }} />
+
+                        <button onClick={() => { widgetRef.current.open() }}>
+                            <img style={{width:"4vh"}} src={attach} alt="attach" />
+                        </button>
+                    </div>
+                    <div>
+                        <textarea ref={inp} type="text"
+                            onKeyDown={(e) => { e.code === "Enter" && handleSend() }}
+                            value={text} onChange={(e) => { setText(e.target.value) }} />
                     </div>
 
 
                     <div>
-                        <span onClick={() => { widgetRef.current.open() }}>📎</span>
 
-                        <button onClick={() => { handleSend() }}>Send✔</button>
+                        <button onClick={() => { handleSend() }}>
+                            <img style={{width:"4vh"}} src={send} alt="send" />
+                        </button>
                     </div>
 
 
@@ -179,9 +186,18 @@ export default function Chat() {
                 </div>
             </>
                 :
-                <h1>SELECT A USER TO CHAT</h1>
+                <div style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100vh",
+                    width: "80vw"
+                }}>
+                    <h1>SELECT A USER TO CHAT</h1>
+                </div>
             }
 
+            <BG />
         </div>
     )
 }
