@@ -31,11 +31,11 @@ function App() {
 
 
           <Routes>
-            <Route path="/" element={<Landing />} />
+            <Route path="https://talks-tday.onrender.com" element={<Landing />} />
 
             <Route path="/home" element={<Protected><Layout /> </Protected>} />
 
-          <Route path="/chat" element={<Protected><Chat /> </Protected>} />
+            <Route path="/chat" element={<Protected><Chat /> </Protected>} />
 
           </Routes>
 
