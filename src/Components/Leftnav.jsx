@@ -13,7 +13,7 @@ export default function Leftnav() {
 
     const { user, setUser, search,
         setSearch, searchUser,
-        searchedUser, setSearchedUser,
+        searchedUser, setSearchedUser,setSelectedUser,
         userOptions, setUserOptions } = useContext(UserContext)
 
     const navigate = useNavigate();
@@ -49,9 +49,9 @@ export default function Leftnav() {
                         setSearch(e.target.value)
                     }} />
 
-                    <span>
-                        🔍
-                    </span>
+                <span>
+                    🔍
+                </span>
 
             </div>
 
@@ -67,9 +67,10 @@ export default function Leftnav() {
                         onClick={() => {
                             setUserOptions(false)
                             setSearchedUser(null)
+                            setSelectedUser(null)
                             setUser(null)
                             auth.signOut()
-                            navigate("/", { replace: true })
+                            navigate("/home", { replace: true })
                         }}>SIGNOUT</Button>
                 </div>
                 <div>
