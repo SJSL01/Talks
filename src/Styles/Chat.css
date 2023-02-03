@@ -3,7 +3,7 @@
     flex-direction: column;
     height: 99vh;
     color: white;
-    width: 70vw;
+    width: 100vw;
 }
 
 .chat-container::-webkit-scrollbar {
@@ -114,10 +114,6 @@
 
 @media only screen and (screen<500px) {
 
-    .chat-container {
-        width: 100vw;
-    }
-
     .my,
     .other {
         font-size: 8vw;
@@ -128,7 +124,7 @@
     }
 
     .chat-top {
-        font-size: 5vw;
+        font-size: 3vw;
     }
 
 
@@ -136,9 +132,7 @@
 
 @media only screen and (screen<300px) {
 
-    .chat-container {
-        width: 100vw;
-    }
+ 
 
     .text {
         font-size: 2vw;
