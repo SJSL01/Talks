@@ -22,7 +22,7 @@
 
 .chat-right {
     min-height: 100%;
-    max-width: 73vw;
+    max-width: 100%;
 }
 
 .enableBlur>* {
