@@ -1,7 +1,7 @@
 .chat-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 99vh;
     color: white;
     width: 70vw;
 }
@@ -12,8 +12,6 @@
 
 .chat-top {
     margin-top: 2vh;
-    position: static;
-    top: 0;
     width: 100%;
     padding: 1vh;
     display: flex;
@@ -89,7 +87,7 @@
     box-shadow: 5px 5px 10px rgb(0, 0, 0);
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
     width: 100%;
 }
 
