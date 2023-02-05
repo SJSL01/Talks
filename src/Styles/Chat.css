@@ -3,7 +3,7 @@
     flex-direction: column;
     height: 99vh;
     color: white;
-    width: 100vw;
+    width: 75vw;
 }
 
 .chat-container::-webkit-scrollbar {
@@ -39,6 +39,7 @@
 
 
 .text-area {
+    flex: 1;
     padding: 1vh;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -112,15 +113,19 @@
 }
 
 
-@media only screen and (screen<500px) {
+@media only screen and (width<500px) {
+
+    .chat-container {
+        width: 100%;
+    }
 
     .my,
     .other {
-        font-size: 8vw;
+        font-size: 5vw;
     }
 
     .text {
-        font-size: 6vw;
+        font-size: 5vw;
     }
 
     .chat-top {
@@ -130,9 +135,11 @@
 
 }
 
-@media only screen and (screen<300px) {
+@media only screen and (width<300px) {
 
- 
+    .chat-container {
+        width: 100%;
+    }
 
     .text {
         font-size: 2vw;

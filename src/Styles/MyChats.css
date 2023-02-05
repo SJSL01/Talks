@@ -1,12 +1,15 @@
+.myChats-Container {
+    max-height: 75vh;
+}
+
 .heading {
     color: white;
     font-size: 8vh;
 }
 
-.all-chats{
+.all-chats {
     overflow-y: scroll;
     height: 50vh;
-    margin: -1vh;
 }
 
 
@@ -37,6 +40,7 @@
 
 .myChats p {
     margin-left: 5vh;
+    font-size: .7rem;
 }
 
 .myChats div img {
