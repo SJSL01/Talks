@@ -74,11 +74,11 @@ export default function Leftnav() {
                             navigate("/home", { replace: true })
                         }}>SIGNOUT</Button>
                 </div>
-                <div>
-                    <Button variant="contained" color="error"
-                        onClick={() => { auth.currentUser.delete() }}>DELETE</Button>
+                {/* <div> */}
+                    {/* <Button variant="contained" color="error"
+                        onClick={() => { auth.currentUser.delete() }}>DELETE</Button> */}
 
-                </div>
+                {/* </div> */}
 
             </div>
         </>

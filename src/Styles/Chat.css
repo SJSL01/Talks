@@ -1,7 +1,7 @@
 .chat-container {
     display: flex;
     flex-direction: column;
-    height: 99vh;
+    height: 100vh;
     color: white;
     width: 75vw;
 }
@@ -12,7 +12,6 @@
 
 .chat-top {
     margin-top: 2vh;
-    width: 100%;
     padding: 1vh;
     display: flex;
     justify-content: center;
@@ -89,12 +88,12 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 100%;
 }
 
 
 .send textarea {
     border: 0;
+    padding: 0.2rem;
     border-radius: 20px;
     resize: none;
     width: 50vw;
@@ -121,11 +120,11 @@
 
     .my,
     .other {
-        font-size: 5vw;
+        font-size: 3vw;
     }
 
     .text {
-        font-size: 5vw;
+        font-size: 4vw;
     }
 
     .chat-top {

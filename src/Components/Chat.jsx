@@ -30,9 +30,7 @@ export default function Chat() {
 
     const { user, selectedUser, messages, setMessages, setSelectedUser } = useContext(UserContext)
 
-    useEffect(() => {
-        // view.current?.scrollIntoView({ behavior: "smooth", block: "end", inline: "end" });
-    }, [media, messages])
+
 
     const cloud = useRef()
     const widgetRef = useRef()
@@ -106,6 +104,7 @@ export default function Chat() {
                 <div className="chat-top">
                     <div onClick={() => {
                         setSelectedUser(null)
+                        setMessages([])
                         navigate("/home")
                     }}>
                         BACK
@@ -133,18 +132,11 @@ export default function Chat() {
                                     <div className="text" >
                                         {message.text}
                                     </div>
-                                    <div>
+                                    <div style={message.receiverId!==user.uid?
+                                    { display: "flex", justifyContent: "flex-end" }:{display: "flex", justifyContent: "flex-start"}}>
                                         <small style={{ fontSize: ".9vh" }}>{format(message.date)}</small>
                                     </div>
 
-                                </div>
-                                <div>
-
-                                    <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-end" }}>
-                                        <img src={message.senderId === user.uid ? user.photoURL : selectedUser.photoURL}
-                                            style={{ height: "5vh", width: "5vh", borderRadius: "50%" }} alt="" />
-                                        <small style={{ fontSize: "1.5vh" }}>{message.senderId === user.uid ? "ME" : selectedUser.username}</small>
-                                    </div>
                                 </div>
                             </div>
 
@@ -164,7 +156,7 @@ export default function Chat() {
                     <div>
 
                         <button onClick={() => { widgetRef.current.open() }}>
-                            <img style={{width:"4vh"}} src={attach} alt="attach" />
+                            <img style={{ width: "4vh" }} src={attach} alt="attach" />
                         </button>
                     </div>
                     <div>
@@ -177,7 +169,7 @@ export default function Chat() {
                     <div>
 
                         <button onClick={() => { handleSend() }}>
-                            <img style={{width:"4vh"}} src={send} alt="send" />
+                            <img style={{ width: "4vh" }} src={send} alt="send" />
                         </button>
                     </div>
 
