@@ -57,10 +57,13 @@ export default function Layout() {
                     <BG />
                 </div>
                 :
-                <h1 className={user?.uid != auth.currentUser?.uid ? "show" : "hide"}>
-                    LOADING
+                <div style={{ height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
+
+                    <h1 className={user?.uid != auth.currentUser?.uid ? "show" : "hide"}>
+                        LOADING
+                    </h1>
                     <BG />
-                </h1>}
+                </div>}
         </>
     )
 }

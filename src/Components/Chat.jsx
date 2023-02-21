@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom"
 import BG from "./BG"
 import send from "../Assests/send.png"
 import attach from "../Assests/attach.png"
+import Back from "../Assests/back.png"
 
 export default function Chat() {
 
@@ -107,7 +108,7 @@ export default function Chat() {
                         setMessages([])
                         navigate("/home")
                     }}>
-                        BACK
+                        <img src={Back} alt="back" />
                     </div>
                     <div>
                         {selectedUser && <h3>{selectedUser?.username}</h3>}
@@ -132,8 +133,8 @@ export default function Chat() {
                                     <div className="text" >
                                         {message.text}
                                     </div>
-                                    <div style={message.receiverId!==user.uid?
-                                    { display: "flex", justifyContent: "flex-end" }:{display: "flex", justifyContent: "flex-start"}}>
+                                    <div style={message.receiverId !== user.uid ?
+                                        { display: "flex", justifyContent: "flex-end" } : { display: "flex", justifyContent: "flex-start" }}>
                                         <small style={{ fontSize: ".9vh" }}>{format(message.date)}</small>
                                     </div>
 

@@ -144,12 +144,8 @@ export default function Landing() {
     return (
         <>
             {!loggedIn?.emailVerified ? <div style={{ display: "flex" }} className="landing-container show" >
-                <div className="left">
-                    <h1>
-                        TALKS
-                    </h1>
-                </div>
-                <div className="right">
+
+                <div className="main">
 
                     <div className={loading ? "card loading" : "card"}>
                         <h1>TALKS</h1>
@@ -224,7 +220,7 @@ export default function Landing() {
                             </div>
 
                             <div style={{ marginTop: "3vh" }}>
-                                <label htmlFor="userAvatar"><small>Select An Avatar</small> <img className="avatar" src={!userInfo.userAvatar ? avatar : userInfo.userAvatar} /></label>
+                                <label htmlFor="userAvatar"><small>{userInfo.userAvatar? "Avatar Updated" :"Select An Avatar"}</small> <img className="avatar" src={avatar} /></label>
                                 <input accept="image/*" onChange={(e) => { setUserInfo({ ...userInfo, userAvatar: e.target.files[0] }); }} style={{ display: "none" }} type="file" id="userAvatar" />
                             </div>
 

@@ -49,7 +49,7 @@ export default function MyChats() {
             <div className='all-chats'>
                 {Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date).map((chat) => {
                     return (
-                        <div
+                        <div key={crypto.randomUUID()}
                             style={selectedUser?.uid == chat[1].userInfo.uid ? { backgroundColor: "rgba(255, 255, 255, 0.432)" } : {}}
                             className='myChats' onClick={() => {
                                 setSelectedUser(chat[1].userInfo)
