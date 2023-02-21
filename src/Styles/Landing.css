@@ -1,3 +1,7 @@
+body {
+    background-color: black;
+}
+
 .landing-container {
     height: 100vh;
     height: --webkit-fill-avaiable;
@@ -44,6 +48,11 @@ form div {
     align-items: center;
 }
 
+
+button,
+img {
+    cursor: pointer;
+}
 
 .input {
     overflow: hidden;
