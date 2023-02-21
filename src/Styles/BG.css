@@ -43,7 +43,7 @@
     left: 10%;
     width: 20px;
     height: 20px;
-    animation-delay: 2s;
+    animation-delay: 1s;
     animation-duration: 12s;
 }
 
@@ -51,7 +51,7 @@
     left: 70%;
     width: 20px;
     height: 20px;
-    animation-delay: 4s;
+    animation-delay: 2s;
 }
 
 .circles li:nth-child(4) {

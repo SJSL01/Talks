@@ -3,7 +3,6 @@
     flex-direction: column;
     height: 100vh;
     color: white;
-    position: relative;
 }
 
 .chat-container::-webkit-scrollbar {
@@ -12,16 +11,13 @@
 
 .chat-top {
     /* margin-top: 1rem; */
-    position: fixed;
-    top: 0;
-    z-index: 10;
-    width: 100%;
     padding: 1vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50px;
-    box-shadow: 5px 5px 10px rgba(25, 25, 25, 0.728);
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
 
 .chat-top div {
@@ -80,19 +76,15 @@
 
 
 .text {
-    z-index: -1;
     font-size: 2vh;
     overflow-wrap: break-word;
 }
 
 
 .send {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
     margin-bottom: 2vh;
     border-radius: 20px;
-    box-shadow: 5px 5px 10px rgb(0, 0, 0);
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -121,11 +113,12 @@
 
 
 @media only screen and (width<500px) {
-
+    
     .chat-container {
+        height: 94vh;
         width: 100%;
     }
-
+    
     .my,
     .other {
         font-size: 3vw;
@@ -142,17 +135,3 @@
 
 }
 
-@media only screen and (width<300px) {
-
-    .chat-container {
-        width: 100%;
-    }
-
-    .text {
-        font-size: 2vw;
-    }
-
-    .chat-top {
-        font-size: 5vw;
-    }
-}
