@@ -1,8 +1,10 @@
-
+.myChats-Container {
+    max-height: 70vh;
+}
 
 .heading {
     color: white;
-    font-size: 5vw;
+    font-size: 8vh;
 }
 
 .all-chats {
@@ -11,11 +13,8 @@
 }
 
 
-.myChats-Container div {
-    margin: 2vh;
-}
-
 .myChats {
+    font-size: 2rem;
     color: white;
     font-weight: bold;
     background: #70707034;
@@ -23,7 +22,7 @@
     display: flex;
     align-items: center;
     margin: 1vh;
-    padding: 1vh;
+    padding: 1rem;
     height: 7vh;
     border-radius: 25px;
     box-shadow: 5px 5px 10px rgb(25, 25, 25)
@@ -38,7 +37,7 @@
 
 .myChats p {
     margin-left: 5vh;
-    font-size: .7rem;
+    font-size: 1rem;
 }
 
 .myChats div img {
@@ -50,11 +49,8 @@
 
 
 @media screen and (width<500px) {
-    .heading{
-        font-size: 2rem;
-    }
     .myChats p {
-        font-size: 1.7vh;
+        font-size: 2vh;
     }
 
     .myChats div img {
