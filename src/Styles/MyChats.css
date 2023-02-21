@@ -14,16 +14,14 @@
 
 
 .myChats {
-    font-size: 2rem;
     color: white;
     font-weight: bold;
     background: #70707034;
     cursor: pointer;
     display: flex;
     align-items: center;
-    margin: 1vh;
-    padding: 1rem;
-    height: 7vh;
+    margin: 1rem 0.5rem;
+    padding: 0.2rem;
     border-radius: 25px;
     box-shadow: 5px 5px 10px rgb(25, 25, 25)
 }
@@ -49,8 +47,12 @@
 
 
 @media screen and (width<500px) {
+    .heading {
+        font-size: 5rem;
+    }
+
     .myChats p {
-        font-size: 2vh;
+        font-size: 1rem;
     }
 
     .myChats div img {

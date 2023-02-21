@@ -45,7 +45,7 @@ export default function MyChats() {
 
             {searchedUser && <hr />}
 
-            <h3 style={{ textAlign: "center", color: "white" }}>My Chats</h3>
+            <h2 style={{ textAlign: "center", color: "white" }}>My Chats</h2>
             <div className='all-chats'>
                 {Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date).map((chat) => {
                     return (
